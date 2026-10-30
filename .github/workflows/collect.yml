@@ -3,6 +3,9 @@ name: Collect events
 on:
   schedule:
     - cron: "43 21 * * *"   # 5:43am Perth time, every day
+  push:                     # re-collect after editing config or code
+    branches: [main]
+    paths: ["config/*.yaml", "monitor/**", "requirements.txt", ".github/workflows/collect.yml"]
   workflow_dispatch:
     inputs:
       council:
