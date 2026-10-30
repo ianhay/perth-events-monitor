@@ -152,7 +152,7 @@ def test_full_collect_run(tmp_path, monkeypatch):
     monkeypatch.setattr(collect_mod, "Http", FakeHttp)
     monkeypatch.setattr("monitor.ai.CACHE_PATH", tmp_path / "ai.json")
     monkeypatch.setattr("monitor.geocode.CACHE_PATH", tmp_path / "geo.json")
-    monkeypatch.setenv("GITHUB_TOKEN", "test")
+    monkeypatch.setenv("GEMINI_API_KEY", "test")
     monkeypatch.delenv("EVENTBRITE_TOKEN", raising=False)
 
     ai_calls = []
@@ -230,7 +230,7 @@ def test_ai_retries_plain_mode_after_empty_json_reply(monkeypatch, tmp_path):
     from monitor import ai
     monkeypatch.setattr(ai, "CACHE_PATH", tmp_path / "c.json")
     monkeypatch.setattr(ai.time, "sleep", lambda s: None)
-    monkeypatch.setenv("GITHUB_TOKEN", "x")
+    monkeypatch.setenv("GEMINI_API_KEY", "x")
     seen = []
 
     class R:

@@ -1,6 +1,6 @@
 # Perth Events Monitor
 
-**v0.1.2** · Collects free and low-cost events (concerts, art classes, talks and more) from council
+**v0.2.0** · Collects free and low-cost events (concerts, art classes, talks and more) from council
 and library websites across Perth and Peel, plus Eventbrite organisers you follow. Runs by itself on
 GitHub Actions, publishes a filterable list and map on GitHub Pages, and emails a weekly digest of
 new events.
@@ -13,7 +13,7 @@ new events.
 | **Find event pages** | 1st of each month, 4:17am | Re-finds each council's events and library pages, in case sites have changed |
 | **Weekly digest** | Fridays, 7:37am | Emails events added since the last digest in your categories, via Resend |
 
-Everything is free: GitHub Actions and Pages, GitHub Models for AI extraction, the Resend free tier,
+Everything is free: GitHub Actions and Pages, the Google Gemini API free tier for AI extraction, the Resend free tier,
 and OpenStreetMap geocoding.
 
 ## Setup (about 15 minutes)
@@ -41,15 +41,15 @@ and OpenStreetMap geocoding.
 
 ### Free AI extraction
 
-Pages with no calendar feed or structured event data are read by a small AI model through
-[GitHub Models](https://github.com/marketplace/models), using the workflow's built-in token (the
-workflow already requests `models: read`). One call reads a whole listing page, and results are
-cached by page content, so unchanged pages never cost a call. The free tier has a daily request cap;
-if it's reached, remaining pages keep yesterday's results and are retried the next day. The first
-few runs may take a couple of days to fill in completely.
+Pages with no calendar feed or structured event data are read by Google's Gemini 3.5 Flash-Lite model
+on the free tier. Get a free key at https://aistudio.google.com/apikey (no credit card needed) and
+add it as the repository secret `GEMINI_API_KEY`. Without it, those pages are skipped and only feeds
+and structured data are collected.
 
-If the run log says GitHub Models refused the token, create a fine-grained personal access token
-with only **Models: read** permission and add it as the secret `MODELS_TOKEN`.
+One call reads a whole listing page, and results are cached by page content, so unchanged pages
+never cost a call. If the free tier's daily cap is reached, remaining pages keep their previous
+results and are retried the next day. Any OpenAI-compatible service can be used instead by changing
+`ai.endpoint` and `ai.model` in `config/settings.yaml`.
 
 ## Fixing or adding sources
 
@@ -98,7 +98,7 @@ python -m http.server -d docs 8000           # view the site at http://localhost
 python -m pytest -q tests                    # offline tests
 ```
 
-For AI extraction locally, set `MODELS_TOKEN` to a token with *Models: read*.
+For AI extraction locally, set the `GEMINI_API_KEY` environment variable.
 
 ## How it works
 

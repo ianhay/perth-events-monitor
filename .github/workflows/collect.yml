@@ -14,7 +14,6 @@ on:
 
 permissions:
   contents: write   # commit the refreshed data
-  models: read      # free AI extraction through GitHub Models
 
 concurrency:
   group: data-update
@@ -38,8 +37,7 @@ jobs:
 
       - name: Collect events
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          MODELS_TOKEN: ${{ secrets.MODELS_TOKEN }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           EVENTBRITE_TOKEN: ${{ secrets.EVENTBRITE_TOKEN }}
         run: |
           if [ -n "${{ inputs.council }}" ]; then

@@ -1,8 +1,9 @@
-"""Free AI extraction through GitHub Models for pages with no feed or structured data.
+"""Free AI extraction for pages with no feed or structured data.
 
-Inside GitHub Actions the built-in GITHUB_TOKEN works when the workflow grants
-`models: read`. Outside Actions (or if your account blocks that), set MODELS_TOKEN
-to a fine-grained personal access token with only the "Models: read" permission.
+Uses Google's Gemini API free tier through its OpenAI-compatible endpoint. Get a free
+key (no credit card) at https://aistudio.google.com/apikey and store it as the
+GEMINI_API_KEY repository secret. Any OpenAI-compatible service can be used instead
+by changing ai.endpoint and ai.model in config/settings.yaml.
 """
 from __future__ import annotations
 
@@ -20,10 +21,10 @@ from .common import DATA, load_json, save_json
 from .normalise import PERTH, Event, clean, parse_dt
 
 log = logging.getLogger("monitor")
-ENDPOINT = "https://models.github.ai/inference/chat/completions"
+DEFAULT_ENDPOINT = "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions"
 CACHE_PATH = DATA / "ai_cache.json"
 DEBUG_PATH = DATA / "ai_debug.json"
-PROMPT_VERSION = "3"  # bump to discard cached replies after prompt or parsing changes
+PROMPT_VERSION = "4"  # bump to discard cached replies after prompt or parsing changes
 
 SYSTEM = """You extract public events from local-government web pages in Perth and Peel, Western Australia.
 Today is {today}. Return only JSON: {{"events": [ ... ]}}.
@@ -62,10 +63,12 @@ class AIExtractor:
     def __init__(self, settings: dict):
         cfg = settings.get("ai", {})
         self.enabled = bool(cfg.get("enabled", True))
-        self.model = cfg.get("model", "openai/gpt-4o-mini")
+        self.model = cfg.get("model", "gemini-3.5-flash-lite")
+        self.endpoint = cfg.get("endpoint", DEFAULT_ENDPOINT)
+        self.pause = float(cfg.get("seconds_between_calls", 6))
         self.max_calls = int(cfg.get("max_calls_per_run", 100))
         self.max_chars = int(cfg.get("max_page_chars", 7000))
-        self.token = os.environ.get("MODELS_TOKEN") or os.environ.get("GITHUB_TOKEN")
+        self.token = os.environ.get(cfg.get("api_key_secret", "GEMINI_API_KEY"), "")
         self.cache: dict = load_json(CACHE_PATH, {})
         self.calls = 0
         self.cache_hits = 0
@@ -74,7 +77,7 @@ class AIExtractor:
         self.debug: list[dict] = []  # what each call saw and returned, for troubleshooting
         if self.enabled and not self.token:
             self.enabled = False
-            self.stopped_reason = "no token (set MODELS_TOKEN or run in GitHub Actions with models: read)"
+            self.stopped_reason = "no API key: add the GEMINI_API_KEY repository secret"
             log.warning("AI extraction off: %s", self.stopped_reason)
 
     def available(self) -> bool:
@@ -107,7 +110,7 @@ class AIExtractor:
         for attempt in range(3):
             self.calls += 1
             try:
-                r = requests.post(ENDPOINT, json=body, headers=headers, timeout=90)
+                r = requests.post(self.endpoint, json=body, headers=headers, timeout=90)
             except requests.RequestException as exc:
                 log.warning("AI request failed: %s", exc)
                 time.sleep(5)
@@ -121,12 +124,24 @@ class AIExtractor:
                 time.sleep(max(wait, 20))
                 continue
             if r.status_code in (401, 403):
-                self.stopped_reason = (f"GitHub Models refused the token ({r.status_code}). Check the workflow has "
-                                       "'models: read', or add a MODELS_TOKEN secret")
+                self.stopped_reason = (f"the AI service refused the API key ({r.status_code}); "
+                                       "check the GEMINI_API_KEY secret")
                 log.warning("AI extraction off: %s", self.stopped_reason)
+                return None
+            if r.status_code == 400 and "response_format" in body:
+                body.pop("response_format")  # JSON mode not supported: carry on in plain mode
+                self.json_mode = False
+                continue
+            if r.status_code == 404:
+                self.stopped_reason = f"model or endpoint not found ({self.model}); check ai.model in settings.yaml"
+                log.warning("AI extraction off: %s: %s", self.stopped_reason, r.text[:200])
                 return None
             if r.status_code >= 400:
                 log.warning("AI request returned %s: %s", r.status_code, r.text[:200])
+                return None
+            if not r.headers.get("content-type", "application/json").startswith("application/json"):
+                self.stopped_reason = f"the AI endpoint did not return JSON (got {r.text[:40]!r}); check ai.endpoint"
+                log.warning("AI extraction off: %s", self.stopped_reason)
                 return None
             try:
                 content = r.json()["choices"][0]["message"].get("content") or ""
@@ -144,7 +159,7 @@ class AIExtractor:
                 self.json_mode = False
                 log.info("Empty AI reply in JSON mode; retrying in plain mode")
                 continue
-            time.sleep(4)  # stay under the per-minute limit
+            time.sleep(self.pause)  # stay under the free tier's per-minute limit
             if events is None:
                 log.warning("AI reply not understood for %s: %r", page_url, content[:200])
                 return None  # not cached, so it is retried next run
