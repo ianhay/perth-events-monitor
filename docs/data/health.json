@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-30T16:05+08:00",
+ "generated": "2026-10-30T16:39+08:00",
  "sources": [
   {
    "source": "City of Armadale",
@@ -9,7 +9,7 @@
    "events": 0,
    "detail": "AI extraction waiting: run budget used",
    "previous_events": 0,
-   "zero_runs": 2,
+   "zero_runs": 3,
    "needs_attention": false,
    "last_nonzero": null
   },
@@ -21,7 +21,7 @@
    "events": 0,
    "detail": "AI extraction waiting: run budget used",
    "previous_events": 0,
-   "zero_runs": 2,
+   "zero_runs": 3,
    "needs_attention": false,
    "last_nonzero": null
   },
@@ -33,7 +33,7 @@
    "events": 0,
    "detail": "AI extraction waiting: run budget used",
    "previous_events": 0,
-   "zero_runs": 2,
+   "zero_runs": 3,
    "needs_attention": false,
    "last_nonzero": null
   },
@@ -45,7 +45,7 @@
    "events": 0,
    "detail": "AI extraction waiting: run budget used",
    "previous_events": 0,
-   "zero_runs": 2,
+   "zero_runs": 3,
    "needs_attention": false,
    "last_nonzero": null
   },
@@ -56,8 +56,8 @@
    "status": "empty",
    "events": 0,
    "detail": "AI extraction waiting: run budget used",
-   "previous_events": null,
-   "zero_runs": 1,
+   "previous_events": 0,
+   "zero_runs": 2,
    "needs_attention": false,
    "last_nonzero": null
   },
@@ -69,7 +69,7 @@
    "events": 0,
    "detail": "AI extraction waiting: run budget used",
    "previous_events": 0,
-   "zero_runs": 2,
+   "zero_runs": 3,
    "needs_attention": false,
    "last_nonzero": null
   },
@@ -81,7 +81,7 @@
    "events": 0,
    "detail": "AI extraction waiting: run budget used",
    "previous_events": 0,
-   "zero_runs": 2,
+   "zero_runs": 3,
    "needs_attention": false,
    "last_nonzero": null
   },
@@ -93,7 +93,7 @@
    "events": 0,
    "detail": "AI extraction waiting: run budget used",
    "previous_events": 0,
-   "zero_runs": 2,
+   "zero_runs": 3,
    "needs_attention": false,
    "last_nonzero": null
   },
@@ -105,7 +105,7 @@
    "events": 0,
    "detail": "AI extraction waiting: run budget used",
    "previous_events": 0,
-   "zero_runs": 2,
+   "zero_runs": 3,
    "needs_attention": false,
    "last_nonzero": null
   },
@@ -117,7 +117,7 @@
    "events": 0,
    "detail": "AI extraction waiting: run budget used",
    "previous_events": 0,
-   "zero_runs": 2,
+   "zero_runs": 3,
    "needs_attention": false,
    "last_nonzero": null
   },
@@ -129,7 +129,7 @@
    "events": 0,
    "detail": "AI extraction waiting: run budget used",
    "previous_events": 0,
-   "zero_runs": 2,
+   "zero_runs": 3,
    "needs_attention": false,
    "last_nonzero": null
   },
@@ -141,7 +141,7 @@
    "events": 0,
    "detail": "AI extraction waiting: run budget used",
    "previous_events": 0,
-   "zero_runs": 2,
+   "zero_runs": 3,
    "needs_attention": false,
    "last_nonzero": null
   },
@@ -152,8 +152,8 @@
    "status": "empty",
    "events": 0,
    "detail": "AI extraction waiting: run budget used",
-   "previous_events": null,
-   "zero_runs": 1,
+   "previous_events": 0,
+   "zero_runs": 2,
    "needs_attention": false,
    "last_nonzero": null
   },
@@ -165,7 +165,7 @@
    "events": 0,
    "detail": "AI extraction waiting: run budget used",
    "previous_events": 0,
-   "zero_runs": 2,
+   "zero_runs": 3,
    "needs_attention": false,
    "last_nonzero": null
   },
@@ -177,7 +177,7 @@
    "events": 0,
    "detail": "AI extraction waiting: run budget used",
    "previous_events": 0,
-   "zero_runs": 2,
+   "zero_runs": 3,
    "needs_attention": false,
    "last_nonzero": null
   },
@@ -189,7 +189,7 @@
    "events": 0,
    "detail": "AI extraction waiting: run budget used",
    "previous_events": 0,
-   "zero_runs": 2,
+   "zero_runs": 3,
    "needs_attention": false,
    "last_nonzero": null
   },
@@ -201,7 +201,7 @@
    "events": 0,
    "detail": "AI extraction waiting: run budget used",
    "previous_events": 0,
-   "zero_runs": 2,
+   "zero_runs": 3,
    "needs_attention": false,
    "last_nonzero": null
   },
@@ -213,7 +213,7 @@
    "events": 0,
    "detail": "AI extraction waiting: run budget used",
    "previous_events": 0,
-   "zero_runs": 2,
+   "zero_runs": 3,
    "needs_attention": false,
    "last_nonzero": null
   },
@@ -224,8 +224,8 @@
    "status": "empty",
    "events": 0,
    "detail": "AI extraction waiting: run budget used",
-   "previous_events": null,
-   "zero_runs": 1,
+   "previous_events": 0,
+   "zero_runs": 2,
    "needs_attention": false,
    "last_nonzero": null
   },
@@ -237,7 +237,7 @@
    "events": 0,
    "detail": "AI extraction waiting: run budget used",
    "previous_events": 0,
-   "zero_runs": 2,
+   "zero_runs": 3,
    "needs_attention": false,
    "last_nonzero": null
   },
@@ -249,7 +249,7 @@
    "events": 0,
    "detail": "AI extraction waiting: run budget used",
    "previous_events": 0,
-   "zero_runs": 2,
+   "zero_runs": 3,
    "needs_attention": false,
    "last_nonzero": null
   },
@@ -261,7 +261,7 @@
    "events": 0,
    "detail": "AI extraction waiting: run budget used",
    "previous_events": 0,
-   "zero_runs": 2,
+   "zero_runs": 3,
    "needs_attention": false,
    "last_nonzero": null
   },
@@ -273,7 +273,7 @@
    "events": 0,
    "detail": "AI extraction waiting: run budget used",
    "previous_events": 0,
-   "zero_runs": 2,
+   "zero_runs": 3,
    "needs_attention": false,
    "last_nonzero": null
   },
@@ -284,7 +284,7 @@
    "status": "ok",
    "events": 1,
    "detail": "",
-   "previous_events": null,
+   "previous_events": 1,
    "zero_runs": 0,
    "needs_attention": false,
    "last_nonzero": "2026-10-30"
@@ -297,7 +297,7 @@
    "events": 0,
    "detail": "AI extraction waiting: run budget used",
    "previous_events": 0,
-   "zero_runs": 2,
+   "zero_runs": 3,
    "needs_attention": false,
    "last_nonzero": null
   },
@@ -309,7 +309,7 @@
    "events": 0,
    "detail": "AI extraction waiting: run budget used",
    "previous_events": 0,
-   "zero_runs": 2,
+   "zero_runs": 3,
    "needs_attention": false,
    "last_nonzero": null
   },
@@ -321,7 +321,7 @@
    "events": 0,
    "detail": "AI extraction waiting: run budget used",
    "previous_events": 0,
-   "zero_runs": 2,
+   "zero_runs": 3,
    "needs_attention": false,
    "last_nonzero": null
   },
@@ -333,7 +333,7 @@
    "events": 0,
    "detail": "AI extraction waiting: run budget used",
    "previous_events": 0,
-   "zero_runs": 2,
+   "zero_runs": 3,
    "needs_attention": false,
    "last_nonzero": null
   },
@@ -381,7 +381,7 @@
    "events": 0,
    "detail": "AI extraction waiting: run budget used",
    "previous_events": 0,
-   "zero_runs": 2,
+   "zero_runs": 3,
    "needs_attention": false,
    "last_nonzero": null
   },
@@ -393,7 +393,7 @@
    "events": 0,
    "detail": "AI extraction waiting: run budget used",
    "previous_events": 0,
-   "zero_runs": 2,
+   "zero_runs": 3,
    "needs_attention": false,
    "last_nonzero": null
   },
@@ -405,7 +405,7 @@
    "events": 0,
    "detail": "AI extraction waiting: run budget used",
    "previous_events": 0,
-   "zero_runs": 2,
+   "zero_runs": 3,
    "needs_attention": false,
    "last_nonzero": null
   },
@@ -416,8 +416,8 @@
    "status": "empty",
    "events": 0,
    "detail": "AI extraction waiting: run budget used",
-   "previous_events": null,
-   "zero_runs": 1,
+   "previous_events": 0,
+   "zero_runs": 2,
    "needs_attention": false,
    "last_nonzero": null
   },
@@ -429,7 +429,7 @@
    "events": 0,
    "detail": "AI extraction waiting: run budget used",
    "previous_events": 0,
-   "zero_runs": 2,
+   "zero_runs": 3,
    "needs_attention": false,
    "last_nonzero": null
   },
@@ -441,7 +441,7 @@
    "events": 0,
    "detail": "AI extraction waiting: run budget used",
    "previous_events": 0,
-   "zero_runs": 2,
+   "zero_runs": 3,
    "needs_attention": false,
    "last_nonzero": null
   },
@@ -453,7 +453,7 @@
    "events": 0,
    "detail": "AI extraction waiting: run budget used",
    "previous_events": 0,
-   "zero_runs": 2,
+   "zero_runs": 3,
    "needs_attention": false,
    "last_nonzero": null
   },
@@ -464,8 +464,8 @@
    "status": "empty",
    "events": 0,
    "detail": "AI extraction waiting: run budget used",
-   "previous_events": null,
-   "zero_runs": 1,
+   "previous_events": 0,
+   "zero_runs": 2,
    "needs_attention": false,
    "last_nonzero": null
   },
@@ -476,8 +476,8 @@
    "status": "empty",
    "events": 0,
    "detail": "AI extraction waiting: run budget used",
-   "previous_events": null,
-   "zero_runs": 1,
+   "previous_events": 0,
+   "zero_runs": 2,
    "needs_attention": false,
    "last_nonzero": null
   },
@@ -489,7 +489,7 @@
    "events": 0,
    "detail": "AI extraction waiting: run budget used",
    "previous_events": 0,
-   "zero_runs": 2,
+   "zero_runs": 3,
    "needs_attention": false,
    "last_nonzero": null
   },
@@ -501,7 +501,7 @@
    "events": 0,
    "detail": "AI extraction waiting: run budget used",
    "previous_events": 0,
-   "zero_runs": 2,
+   "zero_runs": 3,
    "needs_attention": false,
    "last_nonzero": null
   },
@@ -513,7 +513,7 @@
    "events": 0,
    "detail": "AI extraction waiting: run budget used",
    "previous_events": 0,
-   "zero_runs": 2,
+   "zero_runs": 3,
    "needs_attention": false,
    "last_nonzero": null
   },
@@ -525,7 +525,7 @@
    "events": 0,
    "detail": "AI extraction waiting: run budget used",
    "previous_events": 0,
-   "zero_runs": 2,
+   "zero_runs": 3,
    "needs_attention": false,
    "last_nonzero": null
   },
@@ -537,7 +537,7 @@
    "events": 0,
    "detail": "AI extraction waiting: run budget used",
    "previous_events": 0,
-   "zero_runs": 2,
+   "zero_runs": 3,
    "needs_attention": false,
    "last_nonzero": null
   },
@@ -548,8 +548,8 @@
    "status": "empty",
    "events": 0,
    "detail": "AI extraction waiting: run budget used",
-   "previous_events": null,
-   "zero_runs": 1,
+   "previous_events": 0,
+   "zero_runs": 2,
    "needs_attention": false,
    "last_nonzero": null
   },
@@ -560,8 +560,8 @@
    "status": "empty",
    "events": 0,
    "detail": "AI extraction waiting: run budget used",
-   "previous_events": null,
-   "zero_runs": 1,
+   "previous_events": 0,
+   "zero_runs": 2,
    "needs_attention": false,
    "last_nonzero": null
   },
@@ -573,7 +573,7 @@
    "events": 0,
    "detail": "AI extraction waiting: run budget used",
    "previous_events": 0,
-   "zero_runs": 2,
+   "zero_runs": 3,
    "needs_attention": false,
    "last_nonzero": null
   },
@@ -585,7 +585,7 @@
    "events": 0,
    "detail": "AI extraction waiting: run budget used",
    "previous_events": 0,
-   "zero_runs": 2,
+   "zero_runs": 3,
    "needs_attention": false,
    "last_nonzero": null
   },
@@ -597,7 +597,7 @@
    "events": 0,
    "detail": "AI extraction waiting: run budget used",
    "previous_events": 0,
-   "zero_runs": 2,
+   "zero_runs": 3,
    "needs_attention": false,
    "last_nonzero": null
   },
@@ -608,8 +608,8 @@
    "status": "empty",
    "events": 0,
    "detail": "AI extraction waiting: run budget used",
-   "previous_events": null,
-   "zero_runs": 1,
+   "previous_events": 0,
+   "zero_runs": 2,
    "needs_attention": false,
    "last_nonzero": null
   },
@@ -621,7 +621,7 @@
    "events": 0,
    "detail": "AI extraction waiting: run budget used",
    "previous_events": 0,
-   "zero_runs": 2,
+   "zero_runs": 3,
    "needs_attention": false,
    "last_nonzero": null
   },
@@ -633,7 +633,7 @@
    "events": 0,
    "detail": "AI extraction waiting: run budget used",
    "previous_events": 0,
-   "zero_runs": 2,
+   "zero_runs": 3,
    "needs_attention": false,
    "last_nonzero": null
   },
@@ -645,7 +645,7 @@
    "events": 0,
    "detail": "AI extraction waiting: run budget used",
    "previous_events": 0,
-   "zero_runs": 2,
+   "zero_runs": 3,
    "needs_attention": false,
    "last_nonzero": null
   },
@@ -657,7 +657,7 @@
    "events": 0,
    "detail": "AI extraction waiting: run budget used",
    "previous_events": 0,
-   "zero_runs": 2,
+   "zero_runs": 3,
    "needs_attention": false,
    "last_nonzero": null
   },
@@ -669,7 +669,7 @@
    "events": 0,
    "detail": "AI extraction waiting: run budget used",
    "previous_events": 0,
-   "zero_runs": 2,
+   "zero_runs": 3,
    "needs_attention": false,
    "last_nonzero": null
   },
@@ -680,7 +680,7 @@
    "status": "skipped",
    "detail": "EVENTBRITE_TOKEN secret not set",
    "previous_events": 0,
-   "zero_runs": 2,
+   "zero_runs": 3,
    "needs_attention": false,
    "last_nonzero": null
   }
@@ -691,7 +691,7 @@
   "City of Subiaco"
  ],
  "ai": {
-  "calls": 60,
+  "calls": 61,
   "cache_hits": 0,
   "note": ""
  }
