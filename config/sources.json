@@ -1,0 +1,1174 @@
+{
+ "generated": "2026-10-30T15:15+08:00",
+ "version": "0.1.0",
+ "councils": [
+  {
+   "name": "City of Armadale",
+   "region": "metro",
+   "homepage": "https://www.armadale.wa.gov.au",
+   "sources": [
+    {
+     "url": "https://my.armadale.wa.gov.au/whats-on/major-events-and-competitions/",
+     "method": "html",
+     "score": 9.3,
+     "signals": {
+      "jsonld": 0,
+      "detail_links": 13,
+      "dates": 0
+     }
+    }
+   ],
+   "status": "ok",
+   "notes": [],
+   "eventbrite": [],
+   "final_url": "https://my.armadale.wa.gov.au/service/"
+  },
+  {
+   "name": "Town of Bassendean",
+   "region": "metro",
+   "homepage": "https://www.bassendean.wa.gov.au",
+   "sources": [
+    {
+     "url": "https://www.bassendean.wa.gov.au/events/",
+     "method": "html",
+     "score": 21.3,
+     "signals": {
+      "jsonld": 0,
+      "detail_links": 9,
+      "dates": 13
+     }
+    },
+    {
+     "url": "https://www.bassendean.wa.gov.au/events/?c=4",
+     "method": "html",
+     "score": 17.3,
+     "signals": {
+      "jsonld": 0,
+      "detail_links": 7,
+      "dates": 9
+     }
+    },
+    {
+     "url": "https://www.bassendean.wa.gov.au/events/?c=11",
+     "method": "html",
+     "score": 13.3,
+     "signals": {
+      "jsonld": 0,
+      "detail_links": 1,
+      "dates": 3
+     }
+    }
+   ],
+   "status": "ok",
+   "notes": [],
+   "eventbrite": [],
+   "final_url": "https://www.bassendean.wa.gov.au/"
+  },
+  {
+   "name": "City of Bayswater",
+   "region": "metro",
+   "homepage": "https://www.bayswater.wa.gov.au",
+   "sources": [],
+   "status": "no_events_page",
+   "notes": [
+    "No events page found; add one under pin: in councils.yaml"
+   ],
+   "eventbrite": [
+    "19043133306"
+   ],
+   "final_url": "https://www.bayswater.wa.gov.au/"
+  },
+  {
+   "name": "City of Belmont",
+   "region": "metro",
+   "homepage": "https://www.belmont.wa.gov.au",
+   "sources": [
+    {
+     "url": "https://www.belmont.wa.gov.au/live/your-health-and-safety/crime-prevention",
+     "method": "html",
+     "score": 6.3,
+     "signals": {
+      "jsonld": 0,
+      "detail_links": 13,
+      "dates": 0
+     }
+    },
+    {
+     "url": "https://www.belmont.wa.gov.au/discover/what-s-happening/events-in-the-city",
+     "method": "html",
+     "score": 3.0,
+     "signals": {
+      "jsonld": 0,
+      "detail_links": 3,
+      "dates": 0
+     }
+    }
+   ],
+   "status": "ok",
+   "notes": [],
+   "eventbrite": [],
+   "final_url": "https://www.belmont.wa.gov.au/"
+  },
+  {
+   "name": "Town of Cambridge",
+   "region": "metro",
+   "homepage": "https://www.cambridge.wa.gov.au",
+   "sources": [
+    {
+     "url": "https://www.cambridge.wa.gov.au/Discover/Whats-On",
+     "method": "html",
+     "score": 16.0,
+     "signals": {
+      "jsonld": 0,
+      "detail_links": 11,
+      "dates": 10
+     }
+    },
+    {
+     "url": "https://www.cambridge.wa.gov.au/Discover/Whats-On/Baby-Rhymetime-at-Cambridge-Library-%5BWednesdays%5D",
+     "method": "html",
+     "score": 15.3,
+     "signals": {
+      "jsonld": 0,
+      "detail_links": 1,
+      "dates": 98
+     }
+    },
+    {
+     "url": "https://www.cambridge.wa.gov.au/Discover/Whats-On/Storytime-at-Cambridge-Library-%5BThursdays%5D",
+     "method": "html",
+     "score": 15.3,
+     "signals": {
+      "jsonld": 0,
+      "detail_links": 1,
+      "dates": 97
+     }
+    }
+   ],
+   "status": "ok",
+   "notes": [],
+   "eventbrite": [],
+   "final_url": "https://www.cambridge.wa.gov.au/Home"
+  },
+  {
+   "name": "City of Canning",
+   "region": "metro",
+   "homepage": "https://www.canning.wa.gov.au",
+   "sources": [
+    {
+     "url": "https://www.canning.wa.gov.au/things-to-do/libraries/library-events/",
+     "method": "html",
+     "score": 12.3,
+     "signals": {
+      "jsonld": 0,
+      "detail_links": 7,
+      "dates": 0
+     }
+    },
+    {
+     "url": "https://www.canning.wa.gov.au/things-to-do/events/major-events/",
+     "method": "html",
+     "score": 12.0,
+     "signals": {
+      "jsonld": 0,
+      "detail_links": 9,
+      "dates": 21
+     }
+    },
+    {
+     "url": "https://www.canning.wa.gov.au/things-to-do/events/",
+     "method": "html",
+     "score": 10.0,
+     "signals": {
+      "jsonld": 0,
+      "detail_links": 6,
+      "dates": 0
+     }
+    }
+   ],
+   "status": "ok",
+   "notes": [],
+   "eventbrite": [
+    "8254682107"
+   ],
+   "final_url": "https://www.canning.wa.gov.au/"
+  },
+  {
+   "name": "Town of Claremont",
+   "region": "metro",
+   "homepage": "https://www.claremont.wa.gov.au",
+   "sources": [
+    {
+     "url": "https://www.claremont.wa.gov.au/places/bay-view-community-centre/what-s-on-at-the-centre/",
+     "method": "html",
+     "score": 5.0,
+     "signals": {
+      "jsonld": 0,
+      "detail_links": 3,
+      "dates": 3
+     }
+    },
+    {
+     "url": "https://www.claremont.wa.gov.au/community/community-events/bay-view-community-centre-programs-and-activities/",
+     "method": "html",
+     "score": 3.7,
+     "signals": {
+      "jsonld": 0,
+      "detail_links": 0,
+      "dates": 5
+     }
+    }
+   ],
+   "status": "ok",
+   "notes": [],
+   "eventbrite": [],
+   "final_url": "https://www.claremont.wa.gov.au/"
+  },
+  {
+   "name": "City of Cockburn",
+   "region": "metro",
+   "homepage": "https://www.cockburn.wa.gov.au",
+   "sources": [
+    {
+     "url": "https://www.cockburn.wa.gov.au/Adventure-and-Leisure/What-s-On-cockburn/Choose-your-own-adventure",
+     "method": "html",
+     "score": 6.3,
+     "signals": {
+      "jsonld": 0,
+      "detail_links": 6,
+      "dates": 4
+     }
+    },
+    {
+     "url": "https://www.cockburn.wa.gov.au/Adventure-and-Leisure/What-s-On-cockburn/Spend-time-not-money",
+     "method": "html",
+     "score": 6.0,
+     "signals": {
+      "jsonld": 0,
+      "detail_links": 5,
+      "dates": 4
+     }
+    },
+    {
+     "url": "https://www.cockburn.wa.gov.au/Health-Safety-and-Rangers/Community-Safety",
+     "method": "html",
+     "score": 5.0,
+     "signals": {
+      "jsonld": 0,
+      "detail_links": 11,
+      "dates": 4
+     }
+    }
+   ],
+   "status": "ok",
+   "notes": [],
+   "eventbrite": [],
+   "final_url": "https://www.cockburn.wa.gov.au/"
+  },
+  {
+   "name": "Town of Cottesloe",
+   "region": "metro",
+   "homepage": "https://www.cottesloe.wa.gov.au",
+   "sources": [
+    {
+     "url": "https://www.cottesloe.wa.gov.au/events/",
+     "method": "html",
+     "score": 15.0,
+     "signals": {
+      "jsonld": 0,
+      "detail_links": 3,
+      "dates": 18
+     }
+    }
+   ],
+   "status": "ok",
+   "notes": [],
+   "eventbrite": [],
+   "final_url": "https://www.cottesloe.wa.gov.au/"
+  },
+  {
+   "name": "Town of East Fremantle",
+   "region": "metro",
+   "homepage": "https://www.eastfremantle.wa.gov.au",
+   "sources": [
+    {
+     "url": "https://www.eastfremantle.wa.gov.au/events/",
+     "method": "html",
+     "score": 22.0,
+     "signals": {
+      "jsonld": 0,
+      "detail_links": 14,
+      "dates": 28
+     }
+    },
+    {
+     "url": "https://www.eastfremantle.wa.gov.au/events/?c=4",
+     "method": "html",
+     "score": 20.0,
+     "signals": {
+      "jsonld": 0,
+      "detail_links": 14,
+      "dates": 28
+     }
+    }
+   ],
+   "status": "ok",
+   "notes": [],
+   "eventbrite": [],
+   "final_url": "https://www.eastfremantle.wa.gov.au/"
+  },
+  {
+   "name": "City of Fremantle",
+   "region": "metro",
+   "homepage": "https://www.fremantle.wa.gov.au",
+   "sources": [
+    {
+     "url": "https://www.fremantle.wa.gov.au/arts-and-culture/whats-on/",
+     "method": "html",
+     "score": 11.3,
+     "signals": {
+      "jsonld": 0,
+      "detail_links": 5,
+      "dates": 2
+     }
+    },
+    {
+     "url": "https://www.fremantle.wa.gov.au/arts-and-culture/whats-on/?keyword=&event-type=adults&page=1&pagesize=12",
+     "method": "html",
+     "score": 9.3,
+     "signals": {
+      "jsonld": 0,
+      "detail_links": 5,
+      "dates": 2
+     }
+    },
+    {
+     "url": "https://www.fremantle.wa.gov.au/arts-and-culture/whats-on/fremantle-librarys-50%C2%A2-book-sale/",
+     "method": "html",
+     "score": 7.3,
+     "signals": {
+      "jsonld": 0,
+      "detail_links": 0,
+      "dates": 7
+     }
+    }
+   ],
+   "status": "ok",
+   "notes": [],
+   "eventbrite": [],
+   "final_url": "https://www.fremantle.wa.gov.au/"
+  },
+  {
+   "name": "City of Gosnells",
+   "region": "metro",
+   "homepage": "https://www.gosnells.wa.gov.au",
+   "sources": [
+    {
+     "url": "https://www.gosnells.wa.gov.au/Leisure-and-Community/Whats-On/Event-calendar",
+     "method": "html",
+     "score": 17.7,
+     "signals": {
+      "jsonld": 0,
+      "detail_links": 10,
+      "dates": 10
+     }
+    },
+    {
+     "url": "https://www.gosnells.wa.gov.au/Events-Directory/Libraries/Learning-Launchpad",
+     "method": "html",
+     "score": 17.7,
+     "signals": {
+      "jsonld": 0,
+      "detail_links": 11,
+      "dates": 44
+     }
+    },
+    {
+     "url": "https://www.gosnells.wa.gov.au/Events-Directory/Libraries/Mahjong-Club/Mahjong-Club-Amherst-Library",
+     "method": "html",
+     "score": 15.7,
+     "signals": {
+      "jsonld": 0,
+      "detail_links": 11,
+      "dates": 59
+     }
+    }
+   ],
+   "status": "ok",
+   "notes": [],
+   "eventbrite": [],
+   "final_url": "https://www.gosnells.wa.gov.au/Home"
+  },
+  {
+   "name": "City of Joondalup",
+   "region": "metro",
+   "homepage": "https://www.joondalup.wa.gov.au",
+   "sources": [
+    {
+     "url": "https://www.joondalup.wa.gov.au/whats-on/events-calendar",
+     "method": "html",
+     "score": 12.3,
+     "signals": {
+      "jsonld": 0,
+      "detail_links": 4,
+      "dates": 0
+     }
+    },
+    {
+     "url": "https://www.joondalup.wa.gov.au/whats-on",
+     "method": "html",
+     "score": 10.7,
+     "signals": {
+      "jsonld": 0,
+      "detail_links": 5,
+      "dates": 0
+     }
+    },
+    {
+     "url": "https://www.joondalup.wa.gov.au/whats-on/events-calendar?EventCategory=96",
+     "method": "html",
+     "score": 10.3,
+     "signals": {
+      "jsonld": 0,
+      "detail_links": 4,
+      "dates": 0
+     }
+    }
+   ],
+   "status": "ok",
+   "notes": [],
+   "eventbrite": [],
+   "final_url": "https://www.joondalup.wa.gov.au/"
+  },
+  {
+   "name": "City of Kalamunda",
+   "region": "metro",
+   "homepage": "https://www.kalamunda.wa.gov.au",
+   "sources": [
+    {
+     "url": "https://www.kalamunda.wa.gov.au/our-city/events-workshops/whats-on",
+     "method": "html",
+     "score": 25.3,
+     "signals": {
+      "jsonld": 0,
+      "detail_links": 13,
+      "dates": 146
+     }
+    },
+    {
+     "url": "https://www.kalamunda.wa.gov.au/our-city/events-workshops/whats-on/libraries",
+     "method": "html",
+     "score": 13.7,
+     "signals": {
+      "jsonld": 0,
+      "detail_links": 10,
+      "dates": 16
+     }
+    },
+    {
+     "url": "https://www.kalamunda.wa.gov.au/community/libraries/events",
+     "method": "html",
+     "score": 12.0,
+     "signals": {
+      "jsonld": 0,
+      "detail_links": 0,
+      "dates": 6
+     }
+    }
+   ],
+   "status": "ok",
+   "notes": [],
+   "eventbrite": [],
+   "final_url": "https://www.kalamunda.wa.gov.au/"
+  },
+  {
+   "name": "City of Kwinana",
+   "region": "metro",
+   "homepage": "https://www.kwinana.wa.gov.au",
+   "sources": [
+    {
+     "url": "https://www.kwinana.wa.gov.au/city-life/things-to-do/major-events-1",
+     "method": "html",
+     "score": 7.0,
+     "signals": {
+      "jsonld": 0,
+      "detail_links": 0,
+      "dates": 15
+     }
+    }
+   ],
+   "status": "ok",
+   "notes": [],
+   "eventbrite": [],
+   "final_url": "https://www.kwinana.wa.gov.au/"
+  },
+  {
+   "name": "City of Melville",
+   "region": "metro",
+   "homepage": "https://www.melvillecity.com.au",
+   "sources": [
+    {
+     "url": "https://www.melvillecity.com.au/things-to-do/arts-and-culture/programs-and-events",
+     "method": "html",
+     "score": 21.0,
+     "signals": {
+      "jsonld": 0,
+      "detail_links": 11,
+      "dates": 10
+     }
+    },
+    {
+     "url": "https://www.melvillecity.com.au/things-to-do/events/whats-on",
+     "method": "html",
+     "score": 20.3,
+     "signals": {
+      "jsonld": 0,
+      "detail_links": 0,
+      "dates": 10
+     }
+    },
+    {
+     "url": "https://www.melvillecity.com.au/things-to-do/events",
+     "method": "html",
+     "score": 18.3,
+     "signals": {
+      "jsonld": 0,
+      "detail_links": 3,
+      "dates": 10
+     }
+    }
+   ],
+   "status": "ok",
+   "notes": [],
+   "eventbrite": [],
+   "final_url": "https://www.melvillecity.com.au/"
+  },
+  {
+   "name": "Town of Mosman Park",
+   "region": "metro",
+   "homepage": "https://www.mosmanpark.wa.gov.au",
+   "sources": [
+    {
+     "url": "https://www.mosmanpark.wa.gov.au/events/",
+     "method": "ical",
+     "score": 25.0,
+     "signals": {
+      "jsonld": 6,
+      "detail_links": 12,
+      "dates": 3
+     },
+     "ical_url": "https://www.mosmanpark.wa.gov.au/events/?ical=1"
+    },
+    {
+     "url": "https://www.mosmanpark.wa.gov.au/event/remembrance-day-2026/",
+     "method": "ical",
+     "score": 11.3,
+     "signals": {
+      "jsonld": 1,
+      "detail_links": 3,
+      "dates": 4
+     },
+     "ical_url": "https://www.mosmanpark.wa.gov.au/events/?ical=1"
+    },
+    {
+     "url": "https://www.mosmanpark.wa.gov.au/event/impact-cafe-from-issue-to-impact/",
+     "method": "ical",
+     "score": 11.0,
+     "signals": {
+      "jsonld": 1,
+      "detail_links": 3,
+      "dates": 3
+     },
+     "ical_url": "https://www.mosmanpark.wa.gov.au/events/?ical=1"
+    }
+   ],
+   "status": "ok",
+   "notes": [],
+   "eventbrite": [],
+   "final_url": "https://www.mosmanpark.wa.gov.au/"
+  },
+  {
+   "name": "Shire of Mundaring",
+   "region": "metro",
+   "homepage": "https://www.mundaring.wa.gov.au",
+   "sources": [
+    {
+     "url": "https://www.mundaring.wa.gov.au/events/",
+     "method": "html",
+     "score": 10.7,
+     "signals": {
+      "jsonld": 0,
+      "detail_links": 6,
+      "dates": 2
+     }
+    },
+    {
+     "url": "https://www.mundaring.wa.gov.au/events/?c=38",
+     "method": "html",
+     "score": 7.7,
+     "signals": {
+      "jsonld": 0,
+      "detail_links": 3,
+      "dates": 2
+     }
+    },
+    {
+     "url": "https://www.mundaring.wa.gov.au/events/?c=27",
+     "method": "html",
+     "score": 7.7,
+     "signals": {
+      "jsonld": 0,
+      "detail_links": 3,
+      "dates": 2
+     }
+    }
+   ],
+   "status": "ok",
+   "notes": [],
+   "eventbrite": [],
+   "final_url": "https://www.mundaring.wa.gov.au/"
+  },
+  {
+   "name": "City of Nedlands",
+   "region": "metro",
+   "homepage": "https://www.nedlands.wa.gov.au",
+   "sources": [
+    {
+     "url": "https://www.nedlands.wa.gov.au/events/",
+     "method": "html",
+     "score": 24.0,
+     "signals": {
+      "jsonld": 0,
+      "detail_links": 18,
+      "dates": 48
+     }
+    },
+    {
+     "url": "https://www.nedlands.wa.gov.au/events/?c=4",
+     "method": "html",
+     "score": 22.0,
+     "signals": {
+      "jsonld": 0,
+      "detail_links": 18,
+      "dates": 48
+     }
+    }
+   ],
+   "status": "ok",
+   "notes": [],
+   "eventbrite": [],
+   "final_url": "https://www.nedlands.wa.gov.au/"
+  },
+  {
+   "name": "Shire of Peppermint Grove",
+   "region": "metro",
+   "homepage": "https://www.peppermintgrove.wa.gov.au",
+   "sources": [
+    {
+     "url": "https://www.peppermintgrove.wa.gov.au/events/",
+     "method": "html",
+     "score": 11.3,
+     "signals": {
+      "jsonld": 0,
+      "detail_links": 6,
+      "dates": 4
+     }
+    },
+    {
+     "url": "https://www.peppermintgrove.wa.gov.au/events/?c=4",
+     "method": "html",
+     "score": 9.3,
+     "signals": {
+      "jsonld": 0,
+      "detail_links": 6,
+      "dates": 4
+     }
+    },
+    {
+     "url": "https://www.peppermintgrove.wa.gov.au/development/building/sand-drift-prevention-and-sediment-control.aspx",
+     "method": "html",
+     "score": 4.0,
+     "signals": {
+      "jsonld": 0,
+      "detail_links": 6,
+      "dates": 0
+     }
+    }
+   ],
+   "status": "ok",
+   "notes": [],
+   "eventbrite": [],
+   "final_url": "https://www.peppermintgrove.wa.gov.au/"
+  },
+  {
+   "name": "City of Perth",
+   "region": "metro",
+   "homepage": "https://www.perth.wa.gov.au",
+   "sources": [
+    {
+     "url": "https://perth.wa.gov.au/community/community-services-and-facilities/city-of-perth-library/events",
+     "method": "html",
+     "score": 11.3,
+     "signals": {
+      "jsonld": 0,
+      "detail_links": 0,
+      "dates": 10
+     }
+    }
+   ],
+   "status": "ok",
+   "notes": [],
+   "eventbrite": [],
+   "final_url": "https://www.perth.wa.gov.au/"
+  },
+  {
+   "name": "City of Rockingham",
+   "region": "metro",
+   "homepage": "https://www.rockingham.wa.gov.au",
+   "sources": [
+    {
+     "url": "https://rockingham.wa.gov.au/events,-culture-and-tourism/events",
+     "method": "html",
+     "score": 9.0,
+     "signals": {
+      "jsonld": 0,
+      "detail_links": 3,
+      "dates": 0
+     }
+    }
+   ],
+   "status": "ok",
+   "notes": [],
+   "eventbrite": [],
+   "final_url": "https://rockingham.wa.gov.au/"
+  },
+  {
+   "name": "Shire of Serpentine Jarrahdale",
+   "region": "metro",
+   "homepage": "https://www.sjshire.wa.gov.au",
+   "sources": [],
+   "status": "no_events_page",
+   "notes": [
+    "No events page found; add one under pin: in councils.yaml"
+   ],
+   "eventbrite": [],
+   "final_url": "https://www.sjshire.wa.gov.au/"
+  },
+  {
+   "name": "City of South Perth",
+   "region": "metro",
+   "homepage": "https://www.southperth.wa.gov.au",
+   "sources": [
+    {
+     "url": "https://southperth.wa.gov.au/discover/whats-on/events",
+     "method": "html",
+     "score": 20.0,
+     "signals": {
+      "jsonld": 0,
+      "detail_links": 16,
+      "dates": 11
+     }
+    },
+    {
+     "url": "https://southperth.wa.gov.au/discover/whats-on/Events",
+     "method": "html",
+     "score": 19.7,
+     "signals": {
+      "jsonld": 0,
+      "detail_links": 15,
+      "dates": 11
+     }
+    },
+    {
+     "url": "https://southperth.wa.gov.au/discover/whats-on/Events/events-detail",
+     "method": "html",
+     "score": 17.3,
+     "signals": {
+      "jsonld": 0,
+      "detail_links": 20,
+      "dates": 23
+     }
+    }
+   ],
+   "status": "ok",
+   "notes": [],
+   "eventbrite": [],
+   "final_url": "https://southperth.wa.gov.au/"
+  },
+  {
+   "name": "City of Stirling",
+   "region": "metro",
+   "homepage": "https://www.stirling.wa.gov.au",
+   "sources": [
+    {
+     "url": "https://www.stirling.wa.gov.au/attractions-and-recreation/arts-and-events/events-calendar",
+     "method": "html",
+     "score": 12.7,
+     "signals": {
+      "jsonld": 0,
+      "detail_links": 1,
+      "dates": 13
+     }
+    },
+    {
+     "url": "https://www.stirling.wa.gov.au/attractions-and-recreation/arts-and-events/arts-in-our-city",
+     "method": "html",
+     "score": 12.7,
+     "signals": {
+      "jsonld": 0,
+      "detail_links": 0,
+      "dates": 14
+     }
+    },
+    {
+     "url": "https://www.stirling.wa.gov.au/attractions-and-recreation/arts-and-events/events-in-our-city",
+     "method": "html",
+     "score": 12.0,
+     "signals": {
+      "jsonld": 0,
+      "detail_links": 0,
+      "dates": 30
+     }
+    }
+   ],
+   "status": "ok",
+   "notes": [],
+   "eventbrite": [],
+   "final_url": "https://www.stirling.wa.gov.au/"
+  },
+  {
+   "name": "City of Subiaco",
+   "region": "metro",
+   "homepage": "https://www.subiaco.wa.gov.au",
+   "sources": [],
+   "status": "no_events_page",
+   "notes": [
+    "No events page found; add one under pin: in councils.yaml"
+   ],
+   "eventbrite": [],
+   "final_url": "https://www.subiaco.wa.gov.au/"
+  },
+  {
+   "name": "City of Swan",
+   "region": "metro",
+   "homepage": "https://www.swan.wa.gov.au",
+   "sources": [
+    {
+     "url": "https://www.swan.wa.gov.au/explore-and-do/libraries/programs-and-events",
+     "method": "html",
+     "score": 11.3,
+     "signals": {
+      "jsonld": 0,
+      "detail_links": 4,
+      "dates": 0
+     }
+    },
+    {
+     "url": "https://www.swan.wa.gov.au/explore-and-do/libraries/programs-and-events/futures-lab",
+     "method": "html",
+     "score": 3.3,
+     "signals": {
+      "jsonld": 0,
+      "detail_links": 4,
+      "dates": 0
+     }
+    }
+   ],
+   "status": "ok",
+   "notes": [],
+   "eventbrite": [],
+   "final_url": "https://www.swan.wa.gov.au/"
+  },
+  {
+   "name": "Town of Victoria Park",
+   "region": "metro",
+   "homepage": "https://www.victoriapark.wa.gov.au",
+   "sources": [
+    {
+     "url": "https://www.victoriapark.wa.gov.au/events/",
+     "method": "html",
+     "score": 34.0,
+     "signals": {
+      "jsonld": 0,
+      "detail_links": 37,
+      "dates": 64
+     }
+    },
+    {
+     "url": "https://www.victoriapark.wa.gov.au/events/?c=4",
+     "method": "html",
+     "score": 32.0,
+     "signals": {
+      "jsonld": 0,
+      "detail_links": 37,
+      "dates": 64
+     }
+    },
+    {
+     "url": "https://www.victoriapark.wa.gov.au/events/?c=23",
+     "method": "html",
+     "score": 31.7,
+     "signals": {
+      "jsonld": 0,
+      "detail_links": 29,
+      "dates": 47
+     }
+    }
+   ],
+   "status": "ok",
+   "notes": [],
+   "eventbrite": [],
+   "final_url": "https://www.victoriapark.wa.gov.au/"
+  },
+  {
+   "name": "City of Vincent",
+   "region": "metro",
+   "homepage": "https://www.vincent.wa.gov.au",
+   "sources": [
+    {
+     "url": "https://www.vincent.wa.gov.au/events/?c=4",
+     "method": "html",
+     "score": 30.3,
+     "signals": {
+      "jsonld": 0,
+      "detail_links": 25,
+      "dates": 36
+     }
+    },
+    {
+     "url": "https://www.vincent.wa.gov.au/events/",
+     "method": "html",
+     "score": 30.3,
+     "signals": {
+      "jsonld": 0,
+      "detail_links": 19,
+      "dates": 42
+     }
+    },
+    {
+     "url": "https://www.vincent.wa.gov.au/events/?c=99",
+     "method": "html",
+     "score": 21.7,
+     "signals": {
+      "jsonld": 0,
+      "detail_links": 12,
+      "dates": 17
+     }
+    }
+   ],
+   "status": "ok",
+   "notes": [],
+   "eventbrite": [],
+   "final_url": "https://www.vincent.wa.gov.au/"
+  },
+  {
+   "name": "City of Wanneroo",
+   "region": "metro",
+   "homepage": "https://www.wanneroo.wa.gov.au",
+   "sources": [
+    {
+     "url": "https://www.wanneroo.wa.gov.au/events",
+     "method": "html",
+     "score": 14.3,
+     "signals": {
+      "jsonld": 0,
+      "detail_links": 18,
+      "dates": 1
+     }
+    },
+    {
+     "url": "https://www.wanneroo.wa.gov.au/info/20108/public_community_events",
+     "method": "html",
+     "score": 9.0,
+     "signals": {
+      "jsonld": 0,
+      "detail_links": 21,
+      "dates": 0
+     }
+    },
+    {
+     "url": "https://www.wanneroo.wa.gov.au/events/event/1073/clothes_swap_at_wanneroo_library_and_cultural_centre",
+     "method": "html",
+     "score": 5.3,
+     "signals": {
+      "jsonld": 0,
+      "detail_links": 9,
+      "dates": 1
+     }
+    }
+   ],
+   "status": "ok",
+   "notes": [],
+   "eventbrite": [],
+   "final_url": "https://www.wanneroo.wa.gov.au/"
+  },
+  {
+   "name": "City of Mandurah",
+   "region": "peel",
+   "homepage": "https://www.mandurah.wa.gov.au",
+   "sources": [
+    {
+     "url": "https://www.mandurah.wa.gov.au/events-arts-heritage/get%20involved",
+     "method": "html",
+     "score": 6.7,
+     "signals": {
+      "jsonld": 0,
+      "detail_links": 0,
+      "dates": 14
+     }
+    },
+    {
+     "url": "https://www.mandurah.wa.gov.au/community-public-health-and-safety/youth/whats-on-for-youth",
+     "method": "html",
+     "score": 6.0,
+     "signals": {
+      "jsonld": 0,
+      "detail_links": 0,
+      "dates": 9
+     }
+    },
+    {
+     "url": "https://www.mandurah.wa.gov.au/events-arts-heritage",
+     "method": "html",
+     "score": 5.0,
+     "signals": {
+      "jsonld": 0,
+      "detail_links": 9,
+      "dates": 0
+     }
+    }
+   ],
+   "status": "ok",
+   "notes": [],
+   "eventbrite": [],
+   "final_url": "https://www.mandurah.wa.gov.au/"
+  },
+  {
+   "name": "Shire of Murray",
+   "region": "peel",
+   "homepage": "https://www.murray.wa.gov.au",
+   "sources": [
+    {
+     "url": "https://www.murray.wa.gov.au/events/",
+     "method": "html",
+     "score": 27.0,
+     "signals": {
+      "jsonld": 0,
+      "detail_links": 27,
+      "dates": 30
+     }
+    },
+    {
+     "url": "https://www.murray.wa.gov.au/events/?c=4",
+     "method": "html",
+     "score": 24.3,
+     "signals": {
+      "jsonld": 0,
+      "detail_links": 25,
+      "dates": 32
+     }
+    },
+    {
+     "url": "https://www.murray.wa.gov.au/events/?c=27",
+     "method": "html",
+     "score": 13.0,
+     "signals": {
+      "jsonld": 0,
+      "detail_links": 10,
+      "dates": 11
+     }
+    }
+   ],
+   "status": "ok",
+   "notes": [],
+   "eventbrite": [],
+   "final_url": "https://www.murray.wa.gov.au/"
+  },
+  {
+   "name": "Shire of Waroona",
+   "region": "peel",
+   "homepage": "https://www.waroona.wa.gov.au",
+   "sources": [
+    {
+     "url": "https://www.waroona.wa.gov.au/events/",
+     "method": "html",
+     "score": 14.0,
+     "signals": {
+      "jsonld": 0,
+      "detail_links": 8,
+      "dates": 10
+     }
+    },
+    {
+     "url": "https://www.waroona.wa.gov.au/events/?c=4",
+     "method": "html",
+     "score": 12.0,
+     "signals": {
+      "jsonld": 0,
+      "detail_links": 8,
+      "dates": 10
+     }
+    }
+   ],
+   "status": "ok",
+   "notes": [],
+   "eventbrite": [],
+   "final_url": "https://www.waroona.wa.gov.au/"
+  },
+  {
+   "name": "Shire of Boddington",
+   "region": "peel",
+   "homepage": "https://www.boddington.wa.gov.au",
+   "sources": [
+    {
+     "url": "https://www.boddington.wa.gov.au/events/",
+     "method": "html",
+     "score": 22.3,
+     "signals": {
+      "jsonld": 0,
+      "detail_links": 14,
+      "dates": 29
+     }
+    },
+    {
+     "url": "https://www.boddington.wa.gov.au/events/?c=4",
+     "method": "html",
+     "score": 20.3,
+     "signals": {
+      "jsonld": 0,
+      "detail_links": 14,
+      "dates": 29
+     }
+    },
+    {
+     "url": "https://www.boddington.wa.gov.au/discover/events/organise-an-event.aspx",
+     "method": "html",
+     "score": 8.0,
+     "signals": {
+      "jsonld": 0,
+      "detail_links": 0,
+      "dates": 0
+     }
+    }
+   ],
+   "status": "ok",
+   "notes": [],
+   "eventbrite": [],
+   "final_url": "https://www.boddington.wa.gov.au/"
+  }
+ ],
+ "eventbrite_organisers": [
+  {
+   "id": "19043133306",
+   "found_on": [
+    "City of Bayswater"
+   ]
+  },
+  {
+   "id": "8254682107",
+   "found_on": [
+    "City of Canning"
+   ]
+  }
+ ]
+}
