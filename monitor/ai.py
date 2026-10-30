@@ -10,6 +10,7 @@ import hashlib
 import json
 import logging
 import os
+import re
 import time
 from datetime import datetime
 
@@ -21,6 +22,8 @@ from .normalise import PERTH, Event, clean, parse_dt
 log = logging.getLogger("monitor")
 ENDPOINT = "https://models.github.ai/inference/chat/completions"
 CACHE_PATH = DATA / "ai_cache.json"
+DEBUG_PATH = DATA / "ai_debug.json"
+PROMPT_VERSION = "2"  # bump to discard cached replies after prompt or parsing changes
 
 SYSTEM = """You extract public events from local-government web pages in Perth and Peel, Western Australia.
 Today is {today}. Return only JSON: {{"events": [ ... ]}}.
@@ -36,6 +39,25 @@ For a recurring session, list each dated occurrence in the next 90 days, at most
 If the page lists no dated events, return {{"events": []}}."""
 
 
+def parse_reply(content: str) -> list[dict] | None:
+    """Events from a model reply, tolerating code fences or text around the JSON. None if unreadable."""
+    text = (content or "").strip()
+    text = re.sub(r"^```(?:json)?\s*|\s*```$", "", text)
+    for candidate in (text, text[text.find("{"): text.rfind("}") + 1] if "{" in text else "",
+                      text[text.find("["): text.rfind("]") + 1] if "[" in text else ""):
+        if not candidate:
+            continue
+        try:
+            data = json.loads(candidate, strict=False)
+        except ValueError:
+            continue
+        if isinstance(data, dict):
+            data = data.get("events", next((v for v in data.values() if isinstance(v, list)), []))
+        if isinstance(data, list):
+            return [e for e in data if isinstance(e, dict)]
+    return None
+
+
 class AIExtractor:
     def __init__(self, settings: dict):
         cfg = settings.get("ai", {})
@@ -48,6 +70,7 @@ class AIExtractor:
         self.calls = 0
         self.cache_hits = 0
         self.stopped_reason = ""
+        self.debug: list[dict] = []  # what each call saw and returned, for troubleshooting
         if self.enabled and not self.token:
             self.enabled = False
             self.stopped_reason = "no token (set MODELS_TOKEN or run in GitHub Actions with models: read)"
@@ -59,7 +82,7 @@ class AIExtractor:
     def extract(self, text: str, links: str, page_url: str) -> list[Event] | None:
         """Events found on the page, [] if none, or None if skipped (budget/limit) so it retries later."""
         text = text[: self.max_chars]
-        key = hashlib.sha1(f"{self.model}|{page_url}|{text}".encode()).hexdigest()
+        key = hashlib.sha1(f"{PROMPT_VERSION}|{self.model}|{page_url}|{text}".encode()).hexdigest()
         if key in self.cache:
             self.cache_hits += 1
             self.cache[key]["used"] = datetime.now(PERTH).date().isoformat()
@@ -104,15 +127,20 @@ class AIExtractor:
                 log.warning("AI request returned %s: %s", r.status_code, r.text[:200])
                 return None
             try:
-                content = r.json()["choices"][0]["message"]["content"]
-                events = json.loads(content).get("events", [])
-                events = [e for e in events if isinstance(e, dict)]
-            except (KeyError, IndexError, ValueError, AttributeError) as exc:
-                log.warning("AI reply not understood for %s: %s", page_url, exc)
-                events = []
+                content = r.json()["choices"][0]["message"]["content"] or ""
+            except (KeyError, IndexError, ValueError, TypeError) as exc:
+                content = ""
+                log.warning("AI reply had no content for %s: %s (%s)", page_url, exc, r.text[:200])
+            events = parse_reply(content)
+            self.debug.append({"url": page_url, "chars": len(text), "text_start": text[:400],
+                               "reply_start": content[:600], "events": None if events is None else len(events)})
+            time.sleep(4)  # stay under the per-minute limit
+            if events is None:
+                log.warning("AI reply not understood for %s: %r", page_url, content[:200])
+                return None  # not cached, so it is retried next run
             self.cache[key] = {"url": page_url, "events": events,
                                "used": datetime.now(PERTH).date().isoformat()}
-            time.sleep(4)  # stay under the per-minute limit
+            log.info("AI: %d events from %s (%d chars)", len(events), page_url, len(text))
             return [self._to_event(e, page_url) for e in events if self._valid(e)]
         return None
 
@@ -140,3 +168,4 @@ class AIExtractor:
         self.cache = {k: v for k, v in self.cache.items()
                       if datetime.fromisoformat(v.get("used", "2000-01-01")).toordinal() >= cutoff}
         save_json(CACHE_PATH, self.cache, pretty=False)
+        save_json(DEBUG_PATH, self.debug)

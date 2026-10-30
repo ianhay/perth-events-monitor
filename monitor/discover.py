@@ -169,8 +169,13 @@ def discover_council(http: Http, c: dict) -> dict:
     good = [p for p in probed if c.get("pin") or p["jsonld"] or p["detail_links"] >= 3 or p["dates"] >= 5 or p["ical_links"]]
     good.sort(key=lambda p: p["score"], reverse=True)
     chosen = []
+    def path_of(u):
+        return urlparse(u).path.rstrip("/").lower()
+
     for p in good:
-        if any(p["url"].rstrip("/") == q["url"].rstrip("/") for q in chosen):
+        # Skip repeats, filtered variants (?c=4) and single events beneath a listing already chosen.
+        if any(path_of(p["url"]) == path_of(q["url"]) or path_of(p["url"]).startswith(path_of(q["url"]) + "/")
+               for q in chosen):
             continue
         chosen.append(p)
         if len(chosen) >= (len(c.get("pin") or []) or 3):

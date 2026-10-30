@@ -24,7 +24,8 @@ EVENT_WORDS = re.compile(r"event|whats-?on|what-s-on|what's on|calendar|programs
 # Paths that look event-ish but are not public events.
 NOT_EVENTS = re.compile(
     r"council-meeting|meetings?-(and|&)-|agenda|minutes|tender|career|job|vacanc|hire|booking-a-|"
-    r"venue-hire|news|media-release|planning|policy|policies|submit|apply|application|permit|"
+    r"venue-hire|news|media-release|crime|safety|ranger|sand-drift|sediment|organise-an-event|"
+    r"planning|policy|policies|submit|apply|application|permit|"
     r"event-?(planning|organis|organiz|approval|application|toolkit|guide|funding|sponsor|grants?)|"
     r"hold(ing)?-an-event|run(ning)?-an-event|waste|bin|rates|login|signin|account|search\?|"
     r"\.(pdf|docx?|xlsx?|jpg|png|zip|ics)$", re.I)
@@ -230,7 +231,10 @@ def next_page(soup: BeautifulSoup, url: str) -> str | None:
 def page_text(html: str, limit: int) -> str:
     """Readable main-content text (parses its own copy, since it strips tags)."""
     soup = soupify(html)
-    for tag in soup(["script", "style", "noscript", "svg", "nav", "header", "footer", "form", "iframe"]):
+    for tag in soup(["script", "style", "noscript", "svg", "nav", "header", "footer", "iframe", "select",
+                     "option", "button", "aside", "dialog", "template", "picture", "img"]):
+        tag.decompose()
+    for tag in soup.select('[role=navigation], [class*=cookie], [id*=cookie], [class*=breadcrumb]'):
         tag.decompose()
     root = soup.find("main") or soup.find(attrs={"role": "main"}) or soup.find("article") or soup.body or soup
     text = re.sub(r"\n\s*\n+", "\n", root.get_text("\n", strip=True))

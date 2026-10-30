@@ -201,3 +201,25 @@ def test_full_collect_run(tmp_path, monkeypatch):
     # Second run: AI result comes from cache, and events are no longer "initial".
     collect_mod.Collector(settings).run()
     assert len(ai_calls) == 1
+
+
+def test_page_text_keeps_aspnet_form_content():
+    from monitor.extractors import page_text
+    html = ("<html><body><form id='aspnetForm'><nav>Menu</nav><main><h1>What's on</h1>"
+            "<select><option>Location A</option></select><div class='event'>Chatty Cafe 30 October 2026</div>"
+            "</main></form></body></html>")
+    text = page_text(html, 5000)
+    assert "Chatty Cafe 30 October 2026" in text and "Location A" not in text and "Menu" not in text
+
+
+@pytest.mark.parametrize("reply,count", [
+    ('{"events": [{"title": "A", "start": "2026-11-01"}]}', 1),
+    ('```json\n{"events": [{"title": "A", "start": "2026-11-01"}]}\n```', 1),
+    ('Here you go: {"events": []}', 0),
+    ('[{"title": "A", "start": "2026-11-01"}]', 1),
+    ("not json", None),
+])
+def test_parse_ai_reply(reply, count):
+    from monitor.ai import parse_reply
+    out = parse_reply(reply)
+    assert (None if out is None else len(out)) == count
