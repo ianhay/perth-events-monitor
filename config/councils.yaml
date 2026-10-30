@@ -1,0 +1,56 @@
+# Perth metropolitan and Peel local governments.
+#
+# The monthly discovery job starts from each homepage, follows redirects, and
+# finds the events / what's on / library events pages by itself. Its results go
+# to config/sources.json (machine-written; don't edit by hand).
+#
+# Use the optional keys below to correct discovery for a council:
+#   pin:     [urls]   always use these pages as event sources
+#   exclude: [urls]   never use these pages (prefix match)
+#   skip:    true     leave this council out entirely
+#
+# Example:
+#   - name: City of Melville
+#     region: metro
+#     homepage: https://www.melvillecity.com.au
+#     pin:
+#       - https://www.melvillecity.com.au/things-to-do/whats-on
+
+councils:
+  # --- Perth metropolitan region ---
+  - {name: City of Armadale, region: metro, homepage: https://www.armadale.wa.gov.au}
+  - {name: Town of Bassendean, region: metro, homepage: https://www.bassendean.wa.gov.au}
+  - {name: City of Bayswater, region: metro, homepage: https://www.bayswater.wa.gov.au}
+  - {name: City of Belmont, region: metro, homepage: https://www.belmont.wa.gov.au}
+  - {name: Town of Cambridge, region: metro, homepage: https://www.cambridge.wa.gov.au}
+  - {name: City of Canning, region: metro, homepage: https://www.canning.wa.gov.au}
+  - {name: Town of Claremont, region: metro, homepage: https://www.claremont.wa.gov.au}
+  - {name: City of Cockburn, region: metro, homepage: https://www.cockburn.wa.gov.au}
+  - {name: Town of Cottesloe, region: metro, homepage: https://www.cottesloe.wa.gov.au}
+  - {name: Town of East Fremantle, region: metro, homepage: https://www.eastfremantle.wa.gov.au}
+  - {name: City of Fremantle, region: metro, homepage: https://www.fremantle.wa.gov.au}
+  - {name: City of Gosnells, region: metro, homepage: https://www.gosnells.wa.gov.au}
+  - {name: City of Joondalup, region: metro, homepage: https://www.joondalup.wa.gov.au}
+  - {name: City of Kalamunda, region: metro, homepage: https://www.kalamunda.wa.gov.au}
+  - {name: City of Kwinana, region: metro, homepage: https://www.kwinana.wa.gov.au}
+  - {name: City of Melville, region: metro, homepage: https://www.melvillecity.com.au}
+  - {name: Town of Mosman Park, region: metro, homepage: https://www.mosmanpark.wa.gov.au}
+  - {name: Shire of Mundaring, region: metro, homepage: https://www.mundaring.wa.gov.au}
+  - {name: City of Nedlands, region: metro, homepage: https://www.nedlands.wa.gov.au}
+  - {name: Shire of Peppermint Grove, region: metro, homepage: https://www.peppermintgrove.wa.gov.au}
+  - {name: City of Perth, region: metro, homepage: https://www.perth.wa.gov.au}
+  - {name: City of Rockingham, region: metro, homepage: https://www.rockingham.wa.gov.au}
+  - {name: Shire of Serpentine Jarrahdale, region: metro, homepage: https://www.sjshire.wa.gov.au}
+  - {name: City of South Perth, region: metro, homepage: https://www.southperth.wa.gov.au}
+  - {name: City of Stirling, region: metro, homepage: https://www.stirling.wa.gov.au}
+  - {name: City of Subiaco, region: metro, homepage: https://www.subiaco.wa.gov.au}
+  - {name: City of Swan, region: metro, homepage: https://www.swan.wa.gov.au}
+  - {name: Town of Victoria Park, region: metro, homepage: https://www.victoriapark.wa.gov.au}
+  - {name: City of Vincent, region: metro, homepage: https://www.vincent.wa.gov.au}
+  - {name: City of Wanneroo, region: metro, homepage: https://www.wanneroo.wa.gov.au}
+
+  # --- Peel region ---
+  - {name: City of Mandurah, region: peel, homepage: https://www.mandurah.wa.gov.au}
+  - {name: Shire of Murray, region: peel, homepage: https://www.murray.wa.gov.au}
+  - {name: Shire of Waroona, region: peel, homepage: https://www.waroona.wa.gov.au}
+  - {name: Shire of Boddington, region: peel, homepage: https://www.boddington.wa.gov.au}

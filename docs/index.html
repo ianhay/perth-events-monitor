@@ -1,0 +1,813 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="version" content="0.1.0">
+<title>Perth Events Monitor</title>
+<meta name="description" content="Free and low-cost council, library and Eventbrite events across Perth and Peel.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='3' y='6' width='26' height='23' rx='3' fill='%2324529A'/%3E%3Crect x='3' y='6' width='26' height='7' rx='3' fill='%23D87822'/%3E%3Ccircle cx='11' cy='20' r='2.5' fill='%23fff'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" rel="stylesheet">
+<style>
+:root {
+  color-scheme: light;
+  --ih-font-heading: 'Barlow Condensed', 'Arial Narrow', 'Segoe UI', sans-serif;
+  --ih-font-body: 'IBM Plex Sans', 'Segoe UI', Arial, sans-serif;
+  --ih-font-code: 'IBM Plex Mono', 'Cascadia Mono', Consolas, monospace;
+  --ih-bg: #f3f5f8; --ih-sidebar: #e9edf3; --ih-surface: #ffffff; --ih-surface-alt: #edf1f6;
+  --ih-surface-selected: #dfe8f6; --ih-text: #191d23; --ih-text-secondary: #505a68; --ih-text-muted: #5f6976;
+  --ih-text-on-primary: #ffffff; --ih-text-on-accent: #17140b;
+  --ih-primary: #24529a; --ih-primary-hover: #1c447f; --ih-primary-soft: #dfe8f6;
+  --ih-accent: #d87822; --ih-accent-hover: #c96c1a; --ih-accent-soft: #f5dcc6; --ih-accent-text: #8a4508;
+  --ih-border: #c9ced6; --ih-border-strong: #8b95a3; --ih-divider: #d8dde4; --ih-focus: #5f8fd8;
+  --ih-success: #3e745a; --ih-success-soft: #e2eee7; --ih-warning: #a16b24; --ih-warning-soft: #f4e7d3;
+  --ih-error: #b34f4a; --ih-error-soft: #f4dedc; --ih-map-bg: #dbe3ee;
+  --ih-radius: 4px; --ih-shadow-card: 0 4px 14px rgba(29, 49, 78, 0.08);
+  --ih-shadow-floating: 0 12px 32px rgba(29, 49, 78, 0.14);
+}
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --ih-bg: #10151c; --ih-sidebar: #151b23; --ih-surface: #181f29; --ih-surface-alt: #222c39;
+  --ih-surface-selected: #263b58; --ih-text: #f3f5f8; --ih-text-secondary: #c0c8d3; --ih-text-muted: #9aa6b4;
+  --ih-text-on-primary: #0a1320; --ih-primary: #7ea8f2; --ih-primary-hover: #9bbdff; --ih-primary-soft: #263b58;
+  --ih-accent: #f29b4b; --ih-accent-hover: #ffc071; --ih-accent-soft: #613719; --ih-accent-text: #ffc071;
+  --ih-border: #354253; --ih-border-strong: #6b7a8e; --ih-divider: #2a3543; --ih-focus: #7ea8f2;
+  --ih-success: #7bba94; --ih-success-soft: #203d30; --ih-warning: #d5a25e; --ih-warning-soft: #49351d;
+  --ih-error: #e07a74; --ih-error-soft: #4b2929; --ih-map-bg: #182a40;
+  --ih-shadow-card: 0 8px 24px rgba(0, 0, 0, 0.22); --ih-shadow-floating: 0 16px 40px rgba(0, 0, 0, 0.34);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    color-scheme: dark;
+    --ih-bg: #10151c; --ih-sidebar: #151b23; --ih-surface: #181f29; --ih-surface-alt: #222c39;
+    --ih-surface-selected: #263b58; --ih-text: #f3f5f8; --ih-text-secondary: #c0c8d3; --ih-text-muted: #9aa6b4;
+    --ih-text-on-primary: #0a1320; --ih-primary: #7ea8f2; --ih-primary-hover: #9bbdff; --ih-primary-soft: #263b58;
+    --ih-accent: #f29b4b; --ih-accent-hover: #ffc071; --ih-accent-soft: #613719; --ih-accent-text: #ffc071;
+    --ih-border: #354253; --ih-border-strong: #6b7a8e; --ih-divider: #2a3543; --ih-focus: #7ea8f2;
+    --ih-success: #7bba94; --ih-success-soft: #203d30; --ih-warning: #d5a25e; --ih-warning-soft: #49351d;
+    --ih-error: #e07a74; --ih-error-soft: #4b2929; --ih-map-bg: #182a40;
+    --ih-shadow-card: 0 8px 24px rgba(0, 0, 0, 0.22); --ih-shadow-floating: 0 16px 40px rgba(0, 0, 0, 0.34);
+  }
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body { background: var(--ih-bg); color: var(--ih-text); font: 400 15px/23px var(--ih-font-body); }
+a { color: var(--ih-primary); }
+a:hover { color: var(--ih-primary-hover); }
+:focus-visible { outline: 2px solid var(--ih-focus); outline-offset: 2px; }
+button, input, select { font: inherit; color: inherit; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* Header */
+.app-header { display: flex; align-items: center; gap: 12px; padding: 10px 16px; background: var(--ih-surface);
+  border-bottom: 1px solid var(--ih-border); position: sticky; top: 0; z-index: 20; }
+.app-header h1 { font: 700 26px/30px var(--ih-font-heading); margin: 0; letter-spacing: .01em; }
+.version { font: 500 12px/1 var(--ih-font-code); color: var(--ih-text-muted); padding: 3px 6px;
+  border: 1px solid var(--ih-border); border-radius: 4px; vertical-align: middle; margin-left: 6px; }
+.updated { color: var(--ih-text-secondary); font-size: 13px; }
+.header-spacer { flex: 1; }
+
+/* Buttons and controls */
+.btn { display: inline-flex; align-items: center; gap: 6px; min-height: 36px; padding: 6px 12px;
+  border: 1px solid var(--ih-border-strong); background: var(--ih-surface); color: var(--ih-text);
+  border-radius: var(--ih-radius); cursor: pointer; font-weight: 500; font-size: 14px; text-decoration: none; }
+.btn:hover { background: var(--ih-surface-alt); color: var(--ih-text); }
+.btn-primary { background: var(--ih-primary); border-color: var(--ih-primary); color: var(--ih-text-on-primary); }
+.btn-primary:hover { background: var(--ih-primary-hover); color: var(--ih-text-on-primary); }
+.btn-small { min-height: 30px; padding: 3px 9px; font-size: 13px; }
+.btn[aria-pressed='true'] { background: var(--ih-surface-selected); border-color: var(--ih-primary); color: var(--ih-text); }
+.icon { width: 16px; height: 16px; flex: none; }
+input[type='search'], input[type='date'], select {
+  width: 100%; min-height: 36px; padding: 6px 10px; background: var(--ih-surface);
+  border: 1px solid var(--ih-border-strong); border-radius: var(--ih-radius); font-size: 14px; }
+input[type='date'] { min-width: 0; padding: 6px 6px; font-size: 13px; }
+input::placeholder { color: var(--ih-text-muted); opacity: 1; }
+
+/* Layout */
+.layout { display: grid; grid-template-columns: 290px minmax(0, 1fr); min-height: calc(100vh - 57px); }
+.filters { background: var(--ih-sidebar); border-right: 1px solid var(--ih-border); padding: 16px;
+  position: sticky; top: 57px; height: calc(100vh - 57px); overflow-y: auto; }
+.main { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 0.85fr); min-width: 0; }
+.list-pane { padding: 12px 16px 48px; min-width: 0; }
+.map-pane { position: sticky; top: 57px; height: calc(100vh - 57px); border-left: 1px solid var(--ih-border);
+  background: var(--ih-map-bg); }
+#map { position: absolute; inset: 0; }
+body.view-list .map-pane { display: none; }
+body.view-list .main { grid-template-columns: minmax(0, 1fr); }
+body.view-list .list-pane { max-width: 900px; }
+body.view-map .list-pane { display: none; }
+body.view-map .main { grid-template-columns: minmax(0, 1fr); }
+
+/* Filter panel */
+.filters h2 { font: 600 20px/24px var(--ih-font-heading); margin: 0 0 8px; }
+fieldset { border: 0; margin: 0 0 16px; padding: 0; min-width: 0; }
+legend, .label { font: 600 12px/16px var(--ih-font-body); text-transform: uppercase; letter-spacing: .06em;
+  color: var(--ih-text-secondary); margin-bottom: 6px; padding: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { position: relative; }
+.chip input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
+.chip span { display: inline-block; padding: 4px 10px; border: 1px solid var(--ih-border-strong); border-radius: 999px;
+  background: var(--ih-surface); font-size: 13px; line-height: 20px; color: var(--ih-text); }
+.chip input:checked + span { background: var(--ih-primary); border-color: var(--ih-primary); color: var(--ih-text-on-primary); font-weight: 500; }
+.chip input:focus-visible + span { outline: 2px solid var(--ih-focus); outline-offset: 2px; }
+.check { display: flex; align-items: center; gap: 8px; padding: 3px 0; font-size: 14px; line-height: 20px; cursor: pointer; }
+.check input { width: 16px; height: 16px; margin: 0; accent-color: var(--ih-primary); flex: none; }
+.check .count { margin-left: auto; font: 400 12px/1 var(--ih-font-code); color: var(--ih-text-secondary); }
+.date-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 6px; margin-top: 8px; }
+.date-row label { font-size: 12px; color: var(--ih-text-secondary); }
+.council-list { max-height: 220px; overflow-y: auto; border: 1px solid var(--ih-border); border-radius: var(--ih-radius);
+  background: var(--ih-surface); padding: 4px 8px; margin-top: 6px; }
+.link-btn { background: none; border: 0; padding: 0; color: var(--ih-primary); cursor: pointer; font-size: 13px; text-decoration: underline; }
+.filter-actions { display: flex; gap: 12px; margin-bottom: 4px; }
+.toggle-row { display: grid; gap: 2px; }
+
+/* Toolbar */
+.toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; padding: 4px 0 12px;
+  border-bottom: 1px solid var(--ih-divider); margin-bottom: 8px; }
+.result-count { font: 600 20px/24px var(--ih-font-heading); margin-right: auto; }
+.toolbar label { font-size: 13px; color: var(--ih-text-secondary); display: inline-flex; align-items: center; gap: 6px; }
+.toolbar select { width: auto; }
+.view-toggle { display: inline-flex; }
+.view-toggle .btn { border-radius: 0; margin-left: -1px; }
+.view-toggle .btn:first-child { border-radius: 4px 0 0 4px; margin-left: 0; }
+.view-toggle .btn:last-child { border-radius: 0 4px 4px 0; }
+.mobile-only { display: none; }
+
+/* Event list */
+.day-heading { font: 600 20px/24px var(--ih-font-heading); margin: 20px 0 8px; padding-bottom: 4px;
+  border-bottom: 1px solid var(--ih-divider); position: sticky; top: 57px; background: var(--ih-bg); z-index: 2; }
+.event { display: grid; grid-template-columns: 76px minmax(0, 1fr); gap: 12px; padding: 12px;
+  background: var(--ih-surface); border: 1px solid var(--ih-border); border-radius: var(--ih-radius); margin-bottom: 8px; }
+.event.is-selected { border-color: var(--ih-accent); box-shadow: inset 3px 0 0 var(--ih-accent); }
+.event .time { font: 500 13px/18px var(--ih-font-code); color: var(--ih-text); padding-top: 2px; }
+.event .time small { display: block; color: var(--ih-text-secondary); font-size: 12px; }
+.event h3 { font: 600 16px/22px var(--ih-font-body); margin: 0 0 2px; }
+.event h3 a { color: var(--ih-text); text-decoration: none; }
+.event h3 a:hover { color: var(--ih-primary); text-decoration: underline; }
+.event .where { color: var(--ih-text-secondary); font-size: 14px; line-height: 20px; }
+.event .desc { font-size: 14px; line-height: 20px; margin: 6px 0 0; color: var(--ih-text); }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; align-items: center; }
+.badge { display: inline-block; font-size: 12px; line-height: 18px; padding: 1px 8px; border-radius: 999px;
+  border: 1px solid var(--ih-border); background: var(--ih-surface-alt); color: var(--ih-text); font-weight: 500; }
+.badge-free { background: var(--ih-success-soft); border-color: var(--ih-success); color: var(--ih-text); }
+.badge-free::before { content: '✓ '; color: var(--ih-success); font-weight: 700; }
+.badge-new { background: var(--ih-accent-soft); border-color: var(--ih-accent); color: var(--ih-text); font-weight: 600; }
+.badge-kids { background: var(--ih-warning-soft); border-color: var(--ih-warning); color: var(--ih-text); }
+.badge-unknown { background: transparent; color: var(--ih-text-secondary); border-style: dashed; }
+.event-actions { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+.more-btn { display: block; margin: 16px auto; }
+
+/* Empty / notice */
+.notice { padding: 16px; border: 1px solid var(--ih-border); border-left: 3px solid var(--ih-primary);
+  background: var(--ih-surface); border-radius: var(--ih-radius); margin: 16px 0; }
+.notice.warn { border-left-color: var(--ih-accent); }
+.notice h2 { font: 600 20px/24px var(--ih-font-heading); margin: 0 0 4px; }
+.notice p { margin: 4px 0; }
+details.health { margin-top: 8px; font-size: 13px; }
+details.health summary { cursor: pointer; color: var(--ih-primary); }
+details.health li { margin: 2px 0; }
+footer.app-footer { color: var(--ih-text-secondary); font-size: 13px; padding: 16px 0; border-top: 1px solid var(--ih-divider); margin-top: 24px; }
+
+/* Map popup */
+.maplibregl-popup-content { background: var(--ih-surface); color: var(--ih-text); border: 1px solid var(--ih-border);
+  border-radius: 6px; box-shadow: var(--ih-shadow-floating); font: 400 14px/20px var(--ih-font-body); padding: 10px 12px; max-width: 280px; }
+.maplibregl-popup-anchor-bottom .maplibregl-popup-tip { border-top-color: var(--ih-surface); }
+.maplibregl-popup-anchor-top .maplibregl-popup-tip { border-bottom-color: var(--ih-surface); }
+.maplibregl-popup-anchor-left .maplibregl-popup-tip { border-right-color: var(--ih-surface); }
+.maplibregl-popup-anchor-right .maplibregl-popup-tip { border-left-color: var(--ih-surface); }
+.maplibregl-popup-close-button { color: var(--ih-text); font-size: 18px; padding: 2px 6px; }
+.popup-venue { font-weight: 600; margin-bottom: 4px; }
+.popup-list { list-style: none; margin: 0; padding: 0; max-height: 200px; overflow-y: auto; }
+.popup-list li { padding: 4px 0; border-top: 1px solid var(--ih-divider); }
+.popup-list .meta { font-size: 12px; color: var(--ih-text-secondary); font-family: var(--ih-font-code); }
+.map-legend { position: absolute; left: 10px; bottom: 28px; background: var(--ih-surface); color: var(--ih-text);
+  border: 1px solid var(--ih-border); border-radius: 4px; padding: 6px 10px; font-size: 12px; z-index: 2; }
+.map-legend span { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin: 0 4px 0 8px; vertical-align: middle; border: 1.5px solid #fff; }
+
+/* Responsive */
+@media (max-width: 1100px) {
+  .main { grid-template-columns: minmax(0, 1fr); }
+  .map-pane { display: none; }
+  [data-view='split'] { display: none !important; }
+  body.view-map .map-pane { display: block; position: relative; top: 0; height: calc(100vh - 120px); border-left: 0; }
+}
+@media (max-width: 820px) {
+  .layout { grid-template-columns: minmax(0, 1fr); }
+  .filters { display: none; position: fixed; inset: 0; top: 0; height: 100vh; z-index: 40; border-right: 0; }
+  body.filters-open .filters { display: block; }
+  body.filters-open { overflow: hidden; }
+  .mobile-only { display: inline-flex; }
+  .updated { display: none; }
+  .list-pane { padding: 8px 16px 48px; }
+  .event { grid-template-columns: 1fr; gap: 4px; }
+  .event .time { display: flex; gap: 8px; }
+  .event .time small { display: inline; }
+  .app-header h1 { font-size: 22px; }
+}
+@media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; transition: none !important; } }
+@media print {
+  .filters, .map-pane, .toolbar .view-toggle, .event-actions, .app-header .btn { display: none !important; }
+  .layout, .main { display: block; }
+  body { background: #fff; color: #000; }
+}
+</style>
+</head>
+<body class="view-split">
+
+<header class="app-header">
+  <h1>Perth Events Monitor <span class="version" data-version></span></h1>
+  <span class="updated" id="updated"></span>
+  <span class="header-spacer"></span>
+  <button class="btn btn-small mobile-only" id="openFilters" type="button" aria-controls="filters" aria-expanded="false">
+    <svg class="icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12M4 8h8M6 12h4" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg>
+    Filters
+  </button>
+  <button class="btn btn-small" id="themeToggle" type="button" aria-label="Switch colour theme">
+    <svg class="icon" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="5.5" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M8 2.5a5.5 5.5 0 0 1 0 11z" fill="currentColor"/></svg>
+    <span id="themeLabel">Theme</span>
+  </button>
+</header>
+
+<div class="layout">
+  <aside class="filters" id="filters" aria-label="Filters">
+    <div class="filter-actions">
+      <h2 style="margin-right:auto">Filters</h2>
+      <button class="link-btn" type="button" id="resetFilters">Reset</button>
+      <button class="link-btn mobile-only" type="button" id="closeFilters">Done</button>
+    </div>
+
+    <fieldset>
+      <label class="label" for="q" style="display:block">Search</label>
+      <input type="search" id="q" placeholder="Title, venue or description" autocomplete="off">
+    </fieldset>
+
+    <fieldset>
+      <legend>When</legend>
+      <div class="chips" id="whenChips"></div>
+      <div class="date-row">
+        <div><label for="from">From</label><input type="date" id="from"></div>
+        <div><label for="to">To</label><input type="date" id="to"></div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Days</legend>
+      <div class="chips" id="dayChips"></div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Time of day</legend>
+      <div id="todChecks" class="toggle-row"></div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Price</legend>
+      <div class="chips" id="priceChips"></div>
+      <label class="check" style="margin-top:6px"><input type="checkbox" id="unknownPrice" checked> Include events with no price listed</label>
+    </fieldset>
+
+    <fieldset>
+      <legend>Categories</legend>
+      <div id="catChecks" class="toggle-row"></div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Show</legend>
+      <label class="check"><input type="checkbox" id="newOnly"> Only added in the last 7 days</label>
+      <label class="check"><input type="checkbox" id="kids"> Include children's events</label>
+      <label class="check"><input type="checkbox" id="srcCouncil" checked> Council and library sites</label>
+      <label class="check"><input type="checkbox" id="srcEventbrite" checked> Eventbrite</label>
+    </fieldset>
+
+    <fieldset>
+      <legend>Councils</legend>
+      <input type="search" id="councilSearch" placeholder="Filter councils" aria-label="Filter council list">
+      <div class="filter-actions" style="margin-top:6px">
+        <button class="link-btn" type="button" id="councilAll">All</button>
+        <button class="link-btn" type="button" id="councilNone">None</button>
+      </div>
+      <div class="council-list" id="councilList"></div>
+    </fieldset>
+  </aside>
+
+  <div class="main">
+    <section class="list-pane" aria-label="Events">
+      <div class="toolbar">
+        <div class="result-count" id="resultCount" aria-live="polite">Loading…</div>
+        <label>Sort
+          <select id="sort">
+            <option value="date">Date, soonest first</option>
+            <option value="price">Price, lowest first</option>
+            <option value="added">Recently added</option>
+            <option value="distance">Distance from me</option>
+          </select>
+        </label>
+        <div class="view-toggle" role="group" aria-label="View">
+          <button class="btn btn-small" type="button" data-view="list" aria-pressed="false">List</button>
+          <button class="btn btn-small" type="button" data-view="split" aria-pressed="true">List + map</button>
+          <button class="btn btn-small" type="button" data-view="map" aria-pressed="false">Map</button>
+        </div>
+      </div>
+      <div id="notices"></div>
+      <div id="eventList"></div>
+      <button class="btn more-btn" type="button" id="moreBtn" hidden>Show more</button>
+      <footer class="app-footer" id="footer"></footer>
+    </section>
+    <section class="map-pane" aria-label="Map of events">
+      <div id="map"></div>
+      <div class="map-legend" aria-hidden="true"><span style="background:#24529A"></span>Events <span style="background:#D87822"></span>Selected</div>
+    </section>
+  </div>
+</div>
+
+<script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+<script>
+const APP_VERSION = '0.1.0';
+const APP_NAME = 'Perth Events Monitor';
+document.querySelectorAll('[data-version]').forEach(el => el.textContent = 'v' + APP_VERSION);
+console.log(`%c${APP_NAME} v${APP_VERSION}`, 'font-weight:600');
+
+const TZ = 'Australia/Perth';
+const PAGE = 150;
+const $ = sel => document.querySelector(sel);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const store = {
+  get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
+  set(k, v) { try { localStorage.setItem(k, v); } catch (e) { /* storage unavailable */ } },
+};
+
+/* ---------- dates in Perth time ---------- */
+const ymdFmt = new Intl.DateTimeFormat('en-CA', { timeZone: TZ, year: 'numeric', month: '2-digit', day: '2-digit' });
+const dowFmt = new Intl.DateTimeFormat('en-AU', { timeZone: TZ, weekday: 'short' });
+const timeFmt = new Intl.DateTimeFormat('en-AU', { timeZone: TZ, hour: 'numeric', minute: '2-digit', hour12: true });
+const dayHeadFmt = new Intl.DateTimeFormat('en-AU', { timeZone: 'UTC', weekday: 'long', day: 'numeric', month: 'long' });
+const todayYmd = () => ymdFmt.format(new Date());
+function addDays(ymd, n) {
+  const [y, m, d] = ymd.split('-').map(Number);
+  return new Date(Date.UTC(y, m - 1, d + n)).toISOString().slice(0, 10);
+}
+const fmtTime = iso => timeFmt.format(new Date(iso)).replace(':00', '').replace(' ', '').toLowerCase();
+function dayHeading(ymd) {
+  const t = todayYmd();
+  const [y, m, d] = ymd.split('-').map(Number);
+  const label = dayHeadFmt.format(new Date(Date.UTC(y, m - 1, d)));
+  if (ymd === t) return 'Today · ' + label;
+  if (ymd === addDays(t, 1)) return 'Tomorrow · ' + label;
+  return label;
+}
+
+/* ---------- filter definitions ---------- */
+const WHEN = [['today', 'Today'], ['weekend', 'This weekend'], ['7', 'Next 7 days'], ['30', 'Next 30 days'], ['all', 'All upcoming']];
+const DAYS = [['all', 'Any day'], ['weekdays', 'Weekdays'], ['weekends', 'Weekends']];
+const PRICE = [['any', 'Any'], ['free', 'Free only'], ['20', 'Under $20'], ['50', 'Under $50']];
+const TOD = [['morning', 'Morning (before 12pm)'], ['afternoon', 'Afternoon (12–5pm)'], ['evening', 'Evening (after 5pm)'], ['all-day', 'All day / time not listed']];
+
+let DATA = { events: [], categories: {}, interests: [], councils: [] };
+let HEALTH = null;
+let filtered = [];
+let shown = PAGE;
+let myPos = null;
+let selectedId = null;
+let map, mapReady = false;
+
+const defaults = () => ({
+  q: '', when: '30', from: '', to: '', days: 'all', tod: TOD.map(t => t[0]), price: 'any', unknown: true,
+  cats: (DATA.interests.length ? DATA.interests : Object.keys(DATA.categories)).slice(), newOnly: false, kids: false,
+  council: true, eventbrite: true, councils: null, sort: 'date',
+});
+let F = {};
+
+function chipGroup(el, name, options) {
+  el.innerHTML = options.map(([v, l]) =>
+    `<label class="chip"><input type="radio" name="${name}" value="${v}"><span>${l}</span></label>`).join('');
+}
+function checkGroup(el, name, options) {
+  el.innerHTML = options.map(([v, l]) =>
+    `<label class="check"><input type="checkbox" name="${name}" value="${v}"> <span>${esc(l)}</span><span class="count" data-count="${name}:${v}"></span></label>`).join('');
+}
+
+function buildFilters() {
+  chipGroup($('#whenChips'), 'when', WHEN);
+  chipGroup($('#dayChips'), 'days', DAYS);
+  chipGroup($('#priceChips'), 'price', PRICE);
+  checkGroup($('#todChecks'), 'tod', TOD);
+  const cats = Object.entries(DATA.categories);
+  const order = [...DATA.interests, ...cats.map(c => c[0]).filter(k => !DATA.interests.includes(k))];
+  checkGroup($('#catChecks'), 'cat', order.map(k => [k, DATA.categories[k] || k]));
+  renderCouncilList();
+}
+function renderCouncilList() {
+  const term = $('#councilSearch').value.trim().toLowerCase();
+  $('#councilList').innerHTML = DATA.councils
+    .filter(c => !term || c.toLowerCase().includes(term))
+    .map(c => `<label class="check"><input type="checkbox" name="council" value="${esc(c)}"${!F.councils || F.councils.includes(c) ? ' checked' : ''}> <span>${esc(c)}</span><span class="count" data-count="council:${esc(c)}"></span></label>`)
+    .join('') || '<p class="updated" style="display:block">No councils match.</p>';
+}
+
+function syncControls() {
+  $('#q').value = F.q;
+  document.querySelectorAll('input[name=when]').forEach(i => i.checked = i.value === F.when);
+  document.querySelectorAll('input[name=days]').forEach(i => i.checked = i.value === F.days);
+  document.querySelectorAll('input[name=price]').forEach(i => i.checked = i.value === F.price);
+  document.querySelectorAll('input[name=tod]').forEach(i => i.checked = F.tod.includes(i.value));
+  document.querySelectorAll('input[name=cat]').forEach(i => i.checked = F.cats.includes(i.value));
+  $('#from').value = F.from; $('#to').value = F.to;
+  $('#unknownPrice').checked = F.unknown; $('#newOnly').checked = F.newOnly; $('#kids').checked = F.kids;
+  $('#srcCouncil').checked = F.council; $('#srcEventbrite').checked = F.eventbrite;
+  $('#sort').value = F.sort;
+  renderCouncilList();
+}
+
+function readControls() {
+  F.q = $('#q').value.trim();
+  F.when = document.querySelector('input[name=when]:checked')?.value || '';
+  F.days = document.querySelector('input[name=days]:checked')?.value || 'all';
+  F.price = document.querySelector('input[name=price]:checked')?.value || 'any';
+  F.tod = [...document.querySelectorAll('input[name=tod]:checked')].map(i => i.value);
+  F.cats = [...document.querySelectorAll('input[name=cat]:checked')].map(i => i.value);
+  F.from = $('#from').value; F.to = $('#to').value;
+  F.unknown = $('#unknownPrice').checked; F.newOnly = $('#newOnly').checked; F.kids = $('#kids').checked;
+  F.council = $('#srcCouncil').checked; F.eventbrite = $('#srcEventbrite').checked;
+  F.sort = $('#sort').value;
+}
+
+/* ---------- URL hash keeps filters shareable ---------- */
+function saveHash() {
+  const d = defaults(), p = new URLSearchParams();
+  for (const [k, v] of Object.entries(F)) {
+    const dv = d[k];
+    if (JSON.stringify(v) === JSON.stringify(dv)) continue;
+    p.set(k, Array.isArray(v) ? v.join('|') : v === null ? '' : String(v));
+  }
+  const h = p.toString();
+  history.replaceState(null, '', h ? '#' + h : location.pathname + location.search);
+}
+function loadHash() {
+  F = defaults();
+  const p = new URLSearchParams(location.hash.slice(1));
+  for (const [k, v] of p) {
+    if (!(k in F)) continue;
+    if (['tod', 'cats'].includes(k)) F[k] = v ? v.split('|') : [];
+    else if (k === 'councils') F[k] = v ? v.split('|') : [];
+    else if (typeof F[k] === 'boolean') F[k] = v === 'true';
+    else F[k] = v;
+  }
+}
+
+/* ---------- filtering ---------- */
+function dateRange() {
+  const t = todayYmd();
+  if (F.from || F.to) return [F.from || t, F.to || '9999-12-31'];
+  switch (F.when) {
+    case 'today': return [t, t];
+    case 'weekend': {
+      const dow = dowFmt.format(new Date());
+      const toSat = { Sat: 0, Sun: -1, Mon: 5, Tue: 4, Wed: 3, Thu: 2, Fri: 1 }[dow] ?? 0;
+      const sat = addDays(t, toSat);
+      return [toSat < 0 ? t : sat, addDays(sat, 1)];
+    }
+    case '7': return [t, addDays(t, 6)];
+    case '30': return [t, addDays(t, 29)];
+    default: return [t, '9999-12-31'];
+  }
+}
+function priceOk(e) {
+  if (F.price === 'any') return true;
+  const known = e.is_free !== null || e.price_min !== null;
+  if (!known) return F.unknown;
+  if (F.price === 'free') return e.is_free === true;
+  return (e.price_min ?? 0) < Number(F.price);
+}
+function isNew(e) { return e.first_seen && e.first_seen !== 'initial' && e.first_seen >= addDays(todayYmd(), -7); }
+function haversine(a, b) {
+  const R = 6371, r = Math.PI / 180, dLat = (b[0] - a[0]) * r, dLon = (b[1] - a[1]) * r;
+  const h = Math.sin(dLat / 2) ** 2 + Math.cos(a[0] * r) * Math.cos(b[0] * r) * Math.sin(dLon / 2) ** 2;
+  return 2 * R * Math.asin(Math.sqrt(h));
+}
+
+function passesExcept(e, skip) {
+  const [from, to] = dateRange();
+  if (e.date < from || e.date > to) return false;
+  if (skip !== 'days' && F.days === 'weekdays' && e.weekend) return false;
+  if (skip !== 'days' && F.days === 'weekends' && !e.weekend) return false;
+  if (skip !== 'tod' && !F.tod.includes(e.time_of_day)) return false;
+  if (skip !== 'price' && !priceOk(e)) return false;
+  // Children's events show whenever their toggle is on, whatever their category.
+  if (skip !== 'cat' && !(e.kids && F.kids) && !e.categories.some(c => F.cats.includes(c))) return false;
+  if (!F.kids && e.kids) return false;
+  if (F.newOnly && !isNew(e)) return false;
+  if (e.source === 'council' && !F.council) return false;
+  if (e.source === 'eventbrite' && !F.eventbrite) return false;
+  if (skip !== 'council' && F.councils && !F.councils.includes(e.council)) return false;
+  if (F.q) {
+    const hay = `${e.title} ${e.venue} ${e.description} ${e.council} ${e.address}`.toLowerCase();
+    if (!F.q.toLowerCase().split(/\s+/).every(w => hay.includes(w))) return false;
+  }
+  return true;
+}
+
+function apply() {
+  readControls();
+  const checkedCouncils = [...document.querySelectorAll('input[name=council]:checked')].map(i => i.value);
+  const visibleCouncils = [...document.querySelectorAll('input[name=council]')].map(i => i.value);
+  // Councils hidden by the list search keep their previous state.
+  const prev = F.councils || DATA.councils;
+  const merged = DATA.councils.filter(c => visibleCouncils.includes(c) ? checkedCouncils.includes(c) : prev.includes(c));
+  F.councils = merged.length === DATA.councils.length ? null : merged;
+
+  filtered = DATA.events.filter(e => passesExcept(e, null));
+  if (F.sort === 'price') filtered.sort((a, b) => (a.price_min ?? 999) - (b.price_min ?? 999) || a.start.localeCompare(b.start));
+  else if (F.sort === 'added') filtered.sort((a, b) => (b.first_seen || '').localeCompare(a.first_seen || '') || a.start.localeCompare(b.start));
+  else if (F.sort === 'distance' && myPos) {
+    filtered.forEach(e => e._km = e.lat != null ? haversine(myPos, [e.lat, e.lon]) : 9999);
+    filtered.sort((a, b) => a._km - b._km || a.start.localeCompare(b.start));
+  } else filtered.sort((a, b) => a.start.localeCompare(b.start));
+
+  updateCounts();
+  shown = PAGE;
+  renderList();
+  updateMap();
+  saveHash();
+}
+
+function updateCounts() {
+  const tally = (skip, key) => {
+    const m = {};
+    DATA.events.forEach(e => { if (passesExcept(e, skip)) [].concat(key(e)).forEach(k => m[k] = (m[k] || 0) + 1); });
+    return m;
+  };
+  const counts = { cat: tally('cat', e => e.categories), tod: tally('tod', e => e.time_of_day), council: tally('council', e => e.council) };
+  document.querySelectorAll('[data-count]').forEach(el => {
+    const [g, v] = el.dataset.count.split(/:(.+)/);
+    el.textContent = counts[g] ? (counts[g][v] || 0) : '';
+  });
+}
+
+/* ---------- list ---------- */
+function priceBadge(e) {
+  if (e.is_free) return '<span class="badge badge-free">Free</span>';
+  if (e.price_text) return `<span class="badge">${esc(e.price_text)}</span>`;
+  if (e.price_min != null) return `<span class="badge">From $${e.price_min}</span>`;
+  return '<span class="badge badge-unknown">Price not listed</span>';
+}
+function eventCard(e) {
+  const time = e.all_day ? 'All day' : fmtTime(e.start);
+  const end = !e.all_day && e.end && e.end.slice(0, 10) === e.start.slice(0, 10) ? `<small>to ${fmtTime(e.end)}</small>` : '';
+  const cats = e.categories.filter(c => c !== 'other').map(c => `<span class="badge">${esc(DATA.categories[c] || c)}</span>`).join('');
+  const where = [e.venue, e.council].filter(Boolean).map(esc).join(' · ');
+  const dist = F.sort === 'distance' && e._km != null && e._km < 9999 ? ` · ${e._km.toFixed(1)} km` : '';
+  return `<article class="event${e.id === selectedId ? ' is-selected' : ''}" id="ev-${e.id}">
+    <div class="time">${time}${end}</div>
+    <div>
+      <h3><a href="${esc(e.url)}" target="_blank" rel="noopener">${esc(e.title)}</a></h3>
+      <div class="where">${where}${dist}</div>
+      ${e.description ? `<p class="desc">${esc(e.description.length > 220 ? e.description.slice(0, 220) + '…' : e.description)}</p>` : ''}
+      <div class="tags">${priceBadge(e)}${cats}${isNew(e) ? '<span class="badge badge-new">New</span>' : ''}${e.kids ? '<span class="badge badge-kids">Children</span>' : ''}${e.source === 'eventbrite' ? '<span class="badge">Eventbrite</span>' : ''}</div>
+      <div class="event-actions">
+        ${e.booking_url ? `<a class="btn btn-small" href="${esc(e.booking_url)}" target="_blank" rel="noopener">Book</a>` : ''}
+        <button class="btn btn-small" type="button" data-ics="${e.id}">Add to calendar</button>
+        ${e.lat != null ? `<button class="btn btn-small" type="button" data-locate="${e.id}">Show on map</button>` : ''}
+      </div>
+    </div></article>`;
+}
+function renderList() {
+  const list = $('#eventList');
+  $('#resultCount').textContent = `${filtered.length.toLocaleString('en-AU')} event${filtered.length === 1 ? '' : 's'}`;
+  if (!filtered.length) {
+    list.innerHTML = DATA.events.length
+      ? '<div class="notice"><h2>No events match</h2><p>Try a wider date range, more categories, or reset the filters.</p></div>'
+      : '';
+    $('#moreBtn').hidden = true;
+    return;
+  }
+  const slice = filtered.slice(0, shown);
+  let html = '', lastDay = null;
+  const grouped = F.sort === 'date';
+  for (const e of slice) {
+    if (grouped && e.date !== lastDay) { html += `<h2 class="day-heading">${dayHeading(e.date)}</h2>`; lastDay = e.date; }
+    if (!grouped) e._label = true;
+    html += grouped ? eventCard(e) : eventCard(e).replace('<div class="time">', `<div class="time"><small>${esc(e.weekday)} ${esc(e.date.slice(8))}/${esc(e.date.slice(5, 7))}</small>`);
+  }
+  list.innerHTML = html;
+  $('#moreBtn').hidden = filtered.length <= shown;
+  $('#moreBtn').textContent = `Show more (${(filtered.length - shown).toLocaleString('en-AU')} left)`;
+}
+
+/* ---------- calendar file ---------- */
+function downloadIcs(e) {
+  const stamp = iso => new Date(iso).toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, '');
+  const icsEsc = s => String(s || '').replace(/\\/g, '\\\\').replace(/[,;]/g, m => '\\' + m).replace(/\n/g, '\\n');
+  const lines = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Perth Events Monitor//EN', 'BEGIN:VEVENT',
+    `UID:${e.id}@perth-events-monitor`, `DTSTAMP:${stamp(new Date().toISOString())}`];
+  if (e.all_day) {
+    lines.push(`DTSTART;VALUE=DATE:${e.date.replace(/-/g, '')}`, `DTEND;VALUE=DATE:${addDays(e.date, 1).replace(/-/g, '')}`);
+  } else {
+    lines.push(`DTSTART:${stamp(e.start)}`, `DTEND:${stamp(e.end || new Date(new Date(e.start).getTime() + 3600e3).toISOString())}`);
+  }
+  lines.push(`SUMMARY:${icsEsc(e.title)}`, `LOCATION:${icsEsc([e.venue, e.address].filter(Boolean).join(', '))}`,
+    `DESCRIPTION:${icsEsc((e.description || '') + '\n' + e.url)}`, `URL:${e.url}`, 'END:VEVENT', 'END:VCALENDAR');
+  const blob = new Blob([lines.join('\r\n')], { type: 'text/calendar' });
+  const a = Object.assign(document.createElement('a'), { href: URL.createObjectURL(blob), download: `${e.title.slice(0, 40).replace(/[^\w]+/g, '-')}.ics` });
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+}
+
+/* ---------- map ---------- */
+function theme() {
+  const t = document.documentElement.dataset.theme;
+  if (t) return t;
+  return matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+}
+const BASEMAP = {
+  light: 'https://basemaps.cartocdn.com/gl/positron-gl-style/style.json',
+  dark: 'https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json',
+};
+function geojson() {
+  return { type: 'FeatureCollection', features: filtered.filter(e => e.lat != null).map(e => ({
+    type: 'Feature', geometry: { type: 'Point', coordinates: [e.lon, e.lat] }, properties: { id: e.id },
+  })) };
+}
+function addLayers() {
+  if (map.getSource('events')) return;
+  const dark = theme() === 'dark';
+  map.addSource('events', { type: 'geojson', data: geojson(), cluster: true, clusterRadius: 38, clusterMaxZoom: 14 });
+  map.addSource('selected', { type: 'geojson', data: { type: 'FeatureCollection', features: [] } });
+  map.addLayer({ id: 'clusters', type: 'circle', source: 'events', filter: ['has', 'point_count'], paint: {
+    'circle-color': dark ? '#7EA8F2' : '#24529A', 'circle-stroke-color': dark ? '#10151C' : '#FFFFFF', 'circle-stroke-width': 2,
+    'circle-radius': ['step', ['get', 'point_count'], 14, 10, 18, 50, 24] } });
+  map.addLayer({ id: 'cluster-count', type: 'symbol', source: 'events', filter: ['has', 'point_count'],
+    layout: { 'text-field': ['get', 'point_count_abbreviated'], 'text-size': 12, 'text-font': ['Open Sans Bold'] },
+    paint: { 'text-color': dark ? '#0A1320' : '#FFFFFF' } });
+  map.addLayer({ id: 'points', type: 'circle', source: 'events', filter: ['!', ['has', 'point_count']], paint: {
+    'circle-color': dark ? '#7EA8F2' : '#24529A', 'circle-radius': 7,
+    'circle-stroke-color': dark ? '#10151C' : '#FFFFFF', 'circle-stroke-width': 2 } });
+  map.addLayer({ id: 'selected', type: 'circle', source: 'selected', paint: {
+    'circle-color': dark ? '#F29B4B' : '#D87822', 'circle-radius': 10,
+    'circle-stroke-color': dark ? '#10151C' : '#FFFFFF', 'circle-stroke-width': 2.5 } });
+}
+function initMap() {
+  if (!window.maplibregl) { $('#map').innerHTML = '<p class="notice" style="margin:16px">The map library could not load.</p>'; return; }
+  map = new maplibregl.Map({ container: 'map', style: BASEMAP[theme()], center: [115.86, -32.05], zoom: 9.2,
+    attributionControl: { compact: true }, cooperativeGestures: false });
+  map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-right');
+  map.on('load', () => { mapReady = true; addLayers(); updateMap(); });
+  map.on('style.load', () => { if (mapReady) { addLayers(); updateMap(); } });
+  map.on('click', 'clusters', ev => {
+    const f = ev.features[0];
+    map.getSource('events').getClusterExpansionZoom(f.properties.cluster_id).then(z =>
+      map.easeTo({ center: f.geometry.coordinates, zoom: z }));
+  });
+  map.on('click', 'points', ev => openPopup(ev.features[0].properties.id));
+  ['clusters', 'points'].forEach(l => {
+    map.on('mouseenter', l, () => map.getCanvas().style.cursor = 'pointer');
+    map.on('mouseleave', l, () => map.getCanvas().style.cursor = '');
+  });
+}
+function updateMap() {
+  if (!mapReady || !map.getSource('events')) return;
+  map.getSource('events').setData(geojson());
+}
+let popup;
+function openPopup(id) {
+  const e = DATA.events.find(x => x.id === id);
+  if (!e || e.lat == null) return;
+  selectedId = id;
+  const here = filtered.filter(x => x.lat === e.lat && x.lon === e.lon).slice(0, 12);
+  const items = (here.length ? here : [e]).map(x =>
+    `<li><a href="#ev-${x.id}" data-jump="${x.id}">${esc(x.title)}</a><div class="meta">${esc(x.weekday)} ${esc(x.date.slice(8))}/${esc(x.date.slice(5, 7))} · ${x.all_day ? 'all day' : fmtTime(x.start)}${x.is_free ? ' · free' : ''}</div></li>`).join('');
+  if (popup) popup.remove();
+  popup = new maplibregl.Popup({ offset: 12, maxWidth: '300px' }).setLngLat([e.lon, e.lat])
+    .setHTML(`<div class="popup-venue">${esc(e.venue || e.address || 'Venue')}</div><ul class="popup-list">${items}</ul>`).addTo(map);
+  map.getSource('selected')?.setData({ type: 'FeatureCollection', features: [{ type: 'Feature', geometry: { type: 'Point', coordinates: [e.lon, e.lat] }, properties: {} }] });
+  document.querySelectorAll('.event.is-selected').forEach(el => el.classList.remove('is-selected'));
+  document.getElementById('ev-' + id)?.classList.add('is-selected');
+}
+
+/* ---------- view, theme, notices ---------- */
+function setView(v) {
+  document.body.classList.remove('view-list', 'view-split', 'view-map');
+  document.body.classList.add('view-' + v);
+  document.querySelectorAll('[data-view]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.view === v)));
+  store.set('pem-view', v);
+  if (map) setTimeout(() => map.resize(), 50);
+}
+function setTheme(t) {
+  if (t) document.documentElement.dataset.theme = t; else delete document.documentElement.dataset.theme;
+  store.set('pem-theme', t || '');
+  $('#themeLabel').textContent = theme() === 'dark' ? 'Dark' : 'Light';
+  if (map) { mapReady && map.setStyle(BASEMAP[theme()]); }
+}
+
+function renderNotices() {
+  const n = [];
+  if (!DATA.events.length) {
+    n.push(`<div class="notice"><h2>No events collected yet</h2><p>Open the repository's <strong>Actions</strong> tab and run
+      <strong>Collect events</strong>. The first run finds each council's events pages, then collects them; it takes about 30–40 minutes.</p></div>`);
+  }
+  if (HEALTH) {
+    const bad = (HEALTH.sources || []).filter(h => h.needs_attention || h.status === 'skipped');
+    const missing = HEALTH.councils_without_sources || [];
+    if (bad.length || missing.length || HEALTH.ai?.note) {
+      const items = bad.map(h => `<li>${esc(h.source)}: ${esc(h.detail || h.status)}${h.url ? ` (<a href="${esc(h.url)}" target="_blank" rel="noopener">page</a>)` : ''}</li>`)
+        .concat(missing.map(m => `<li>${esc(m)}: no events page found yet</li>`))
+        .concat(HEALTH.ai?.note ? [`<li>AI extraction: ${esc(HEALTH.ai.note)}</li>`] : []);
+      n.push(`<details class="health notice warn"><summary>${items.length} source${items.length === 1 ? '' : 's'} need attention</summary><ul>${items.join('')}</ul></details>`);
+    }
+  }
+  $('#notices').innerHTML = n.join('');
+  const ok = HEALTH ? (HEALTH.sources || []).filter(h => h.events > 0).length : 0;
+  $('#footer').innerHTML = `${APP_NAME} v${APP_VERSION}${DATA.version ? ` · collector v${esc(DATA.version)}` : ''} · ` +
+    `${DATA.events.length.toLocaleString('en-AU')} upcoming events from ${ok} sources across ${DATA.councils.length} councils and Eventbrite. ` +
+    `Always check the organiser's page before you go. Map data © OpenStreetMap contributors, © CARTO.`;
+}
+
+/* ---------- wiring ---------- */
+function wire() {
+  const filtersEl = $('#filters');
+  filtersEl.addEventListener('change', ev => {
+    if (ev.target.name === 'when') { $('#from').value = ''; $('#to').value = ''; }
+    if (ev.target.id === 'from' || ev.target.id === 'to') document.querySelectorAll('input[name=when]').forEach(i => i.checked = false);
+    apply();
+  });
+  let t;
+  $('#q').addEventListener('input', () => { clearTimeout(t); t = setTimeout(apply, 200); });
+  $('#councilSearch').addEventListener('input', renderCouncilList);
+  $('#councilAll').addEventListener('click', () => { F.councils = null; renderCouncilList(); apply(); });
+  $('#councilNone').addEventListener('click', () => { F.councils = []; renderCouncilList(); apply(); });
+  $('#resetFilters').addEventListener('click', () => { F = defaults(); syncControls(); apply(); });
+  $('#sort').addEventListener('change', () => {
+    if ($('#sort').value === 'distance' && !myPos) {
+      if (!navigator.geolocation) { alert('Your browser cannot share your location.'); $('#sort').value = 'date'; return; }
+      navigator.geolocation.getCurrentPosition(p => { myPos = [p.coords.latitude, p.coords.longitude]; apply(); },
+        () => { alert('Location was not shared, so sorting by date instead.'); $('#sort').value = 'date'; apply(); });
+      return;
+    }
+    apply();
+  });
+  $('#moreBtn').addEventListener('click', () => { shown += PAGE; renderList(); });
+  $('#eventList').addEventListener('click', ev => {
+    const ics = ev.target.closest('[data-ics]');
+    if (ics) downloadIcs(DATA.events.find(e => e.id === ics.dataset.ics));
+    const loc = ev.target.closest('[data-locate]');
+    if (loc && map) {
+      const e = DATA.events.find(x => x.id === loc.dataset.locate);
+      if (document.body.classList.contains('view-list') || innerWidth <= 1100) setView(innerWidth <= 1100 ? 'map' : 'split');
+      map.flyTo({ center: [e.lon, e.lat], zoom: 14 });
+      openPopup(e.id);
+    }
+  });
+  document.addEventListener('click', ev => {
+    const j = ev.target.closest('[data-jump]');
+    if (!j) return;
+    ev.preventDefault();
+    if (innerWidth <= 1100) setView('list');
+    const idx = filtered.findIndex(e => e.id === j.dataset.jump);
+    if (idx >= shown) { shown = idx + 1; renderList(); }
+    selectedId = j.dataset.jump;
+    document.querySelectorAll('.event.is-selected').forEach(el => el.classList.remove('is-selected'));
+    const el = document.getElementById('ev-' + j.dataset.jump);
+    if (el) { el.classList.add('is-selected'); el.scrollIntoView({ block: 'center' }); }
+  });
+  document.querySelectorAll('[data-view]').forEach(b => b.addEventListener('click', () => setView(b.dataset.view)));
+  $('#themeToggle').addEventListener('click', () => setTheme(theme() === 'dark' ? 'light' : 'dark'));
+  const openF = open => { document.body.classList.toggle('filters-open', open); $('#openFilters').setAttribute('aria-expanded', String(open)); };
+  $('#openFilters').addEventListener('click', () => openF(true));
+  $('#closeFilters').addEventListener('click', () => openF(false));
+  matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => { if (!document.documentElement.dataset.theme) setTheme(''); });
+}
+
+async function init() {
+  setTheme(store.get('pem-theme') || '');
+  const v0 = store.get('pem-view') || 'split';
+  setView(innerWidth <= 1100 && v0 === 'split' ? 'list' : v0);
+  try {
+    const r = await fetch('data/events.json', { cache: 'no-cache' });
+    if (r.ok) DATA = await r.json();
+  } catch (e) { console.warn('No event data yet', e); }
+  try {
+    const r = await fetch('data/health.json', { cache: 'no-cache' });
+    if (r.ok) HEALTH = await r.json();
+  } catch (e) { /* optional */ }
+  DATA.events = DATA.events || [];
+  DATA.councils = DATA.councils || [];
+  if (!Object.keys(DATA.categories || {}).length) DATA.categories = { music: 'Concerts & live music', art_workshop: 'Art classes & workshops', talk: 'Talks & author events', other: 'Other' };
+  if (DATA.generated) {
+    const g = new Date(DATA.generated);
+    $('#updated').textContent = 'Updated ' + new Intl.DateTimeFormat('en-AU', { timeZone: TZ, weekday: 'short', day: 'numeric', month: 'short', hour: 'numeric', minute: '2-digit' }).format(g);
+  }
+  loadHash();
+  buildFilters();
+  syncControls();
+  wire();
+  renderNotices();
+  initMap();
+  apply();
+}
+init();
+</script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+# Eventbrite organisers to follow.
+#
+# Discovery adds any Eventbrite organiser it finds linked from a council or
+# library page automatically (see config/sources.json). Add others here.
+#
+# The ID is the number at the end of an organiser's profile URL, e.g.
+#   https://www.eventbrite.com.au/o/city-of-example-library-12345678901
+#                                                          ^^^^^^^^^^^
+# Optional per-organiser keys:
+#   council: which council area to show them under (default: "Eventbrite")
+#   skip:    true to stop following an auto-discovered organiser
+
+organisers:
+  # - {id: "12345678901", name: "Example Jazz Club", council: "City of Fremantle"}
+  # - {id: "10987654321", skip: true}

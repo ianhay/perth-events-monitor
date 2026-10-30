@@ -1,0 +1,7 @@
+requests>=2.32
+beautifulsoup4>=4.12
+lxml>=5.2
+PyYAML>=6.0
+python-dateutil>=2.9
+icalendar>=5.0
+recurring-ical-events>=2.2

@@ -1,0 +1,69 @@
+# How far ahead to collect events.
+horizon_days: 90
+
+# Politeness: seconds between requests to the same website.
+request_delay_seconds: 1.5
+
+# Per-source limits for each daily run.
+max_listing_pages: 5          # pagination pages followed per source
+max_detail_pages_per_run: 40  # new or stale event detail pages fetched per source
+detail_recheck_days: 6        # re-read an event detail page after this many days
+
+# Free AI extraction (GitHub Models). Used only for listing pages that have
+# no feed or structured data: one call reads a whole listing page. Results are
+# cached by page content, so unchanged pages never cost a call. The free tier
+# has a daily request cap; anything over the cap is picked up on the next run.
+ai:
+  enabled: true
+  model: openai/gpt-4o-mini
+  max_calls_per_run: 100
+  max_page_chars: 12000
+
+# Geocoding through OpenStreetMap Nominatim (1 request per second, cached).
+geocode:
+  enabled: true
+  max_new_per_run: 80
+  # Perth + Peel bounding box: west, north, east, south
+  viewbox: [115.40, -31.40, 116.45, -33.10]
+
+# Your interests. Events are tagged by keyword; the website and digest
+# default to these categories.
+interests: [music, art_workshop, talk]
+
+categories:
+  music:
+    label: Concerts & live music
+    keywords: [concert, live music, gig, band, orchestra, choir, jazz, blues, recital, quartet,
+               symphony, acoustic, singer, songwriter, musician, music in the park, sundown sessions,
+               dj, opera, folk music, ensemble, open mic]
+  art_workshop:
+    label: Art classes & workshops
+    keywords: [art class, workshop, painting, drawing, sketch, watercolour, watercolor, pottery,
+               ceramics, printmaking, linocut, weaving, crochet, knitting, sewing, embroidery,
+               collage, mosaic, photography, calligraphy, craft, makers, life drawing, sculpture,
+               jewellery making, zine]
+  talk:
+    label: Talks & author events
+    keywords: [author, talk, lecture, book launch, in conversation, panel, presentation, seminar,
+               history talk, writers, poetry reading, book club, storytelling for adults,
+               q&a, guest speaker, discussion, heritage talk]
+  market_festival:
+    label: Markets & festivals
+    keywords: [festival, market, fair, carnival, night market, parade, fiesta, celebration, expo]
+  film:
+    label: Film
+    keywords: [film, movie, cinema, screening, outdoor cinema]
+
+# Events matching these are treated as children's events: hidden by default
+# on the website (one toggle shows them) and left out of the digest.
+kids_keywords: [rhyme time, rhymetime, storytime, story time, baby, babies, toddler, toddlers,
+                playgroup, preschool, pre-school, school holiday, kids, children, children's,
+                junior, teen, teens, youth, lego, ages 0, ages 2, ages 3, ages 4, ages 5, ages 6,
+                ages 7, ages 8, years 0, under 5s, under 12s, family fun, little ones, homework club,
+                code club for kids, minecraft]
+
+# Weekly digest
+digest:
+  subject: "New Perth events this week"
+  max_items_per_category: 25
+  site_url: ""   # set to your GitHub Pages URL so the email links to the site

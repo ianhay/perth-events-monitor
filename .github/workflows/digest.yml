@@ -1,0 +1,40 @@
+name: Weekly digest
+
+on:
+  schedule:
+    - cron: "37 23 * * 4"   # 7:37am Perth time every Friday
+  workflow_dispatch:
+
+permissions:
+  contents: write   # records when the last digest went out
+
+concurrency:
+  group: data-update
+  cancel-in-progress: false
+
+jobs:
+  digest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - name: Send digest
+        env:
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          DIGEST_TO: ${{ secrets.DIGEST_TO }}
+          DIGEST_FROM: ${{ secrets.DIGEST_FROM }}
+        run: python -m monitor.digest
+      - name: Commit state
+        run: |
+          git config user.name "events-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/state.json
+          git diff --cached --quiet && exit 0
+          git commit -m "Digest sent $(TZ=Australia/Perth date +'%Y-%m-%d')"
+          git pull --rebase --autostash
+          git push
