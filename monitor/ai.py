@@ -23,7 +23,7 @@ log = logging.getLogger("monitor")
 ENDPOINT = "https://models.github.ai/inference/chat/completions"
 CACHE_PATH = DATA / "ai_cache.json"
 DEBUG_PATH = DATA / "ai_debug.json"
-PROMPT_VERSION = "2"  # bump to discard cached replies after prompt or parsing changes
+PROMPT_VERSION = "3"  # bump to discard cached replies after prompt or parsing changes
 
 SYSTEM = """You extract public events from local-government web pages in Perth and Peel, Western Australia.
 Today is {today}. Return only JSON: {{"events": [ ... ]}}.
@@ -70,6 +70,7 @@ class AIExtractor:
         self.calls = 0
         self.cache_hits = 0
         self.stopped_reason = ""
+        self.json_mode = True  # switched off for the run if the model returns empty JSON-mode replies
         self.debug: list[dict] = []  # what each call saw and returned, for troubleshooting
         if self.enabled and not self.token:
             self.enabled = False
@@ -94,12 +95,13 @@ class AIExtractor:
         body = {
             "model": self.model,
             "temperature": 0,
-            "response_format": {"type": "json_object"},
             "messages": [
                 {"role": "system", "content": SYSTEM.format(today=today)},
                 {"role": "user", "content": f"PAGE URL: {page_url}\n\nPAGE TEXT:\n{text}\n\nLINKS:\n{links[:2500]}"},
             ],
         }
+        if self.json_mode:
+            body["response_format"] = {"type": "json_object"}
         headers = {"Authorization": f"Bearer {self.token}", "Content-Type": "application/json",
                    "Accept": "application/json"}
         for attempt in range(3):
@@ -127,13 +129,21 @@ class AIExtractor:
                 log.warning("AI request returned %s: %s", r.status_code, r.text[:200])
                 return None
             try:
-                content = r.json()["choices"][0]["message"]["content"] or ""
-            except (KeyError, IndexError, ValueError, TypeError) as exc:
+                content = r.json()["choices"][0]["message"].get("content") or ""
+            except (KeyError, IndexError, ValueError, TypeError, AttributeError) as exc:
                 content = ""
                 log.warning("AI reply had no content for %s: %s (%s)", page_url, exc, r.text[:200])
             events = parse_reply(content)
             self.debug.append({"url": page_url, "chars": len(text), "text_start": text[:400],
-                               "reply_start": content[:600], "events": None if events is None else len(events)})
+                               "status": r.status_code, "json_mode": "response_format" in body,
+                               "reply_start": content[:600], "raw": r.text[:800],
+                               "events": None if events is None else len(events)})
+            if not content and "response_format" in body:
+                # Some hosted models return an empty message in JSON mode; ask again in plain mode.
+                body.pop("response_format")
+                self.json_mode = False
+                log.info("Empty AI reply in JSON mode; retrying in plain mode")
+                continue
             time.sleep(4)  # stay under the per-minute limit
             if events is None:
                 log.warning("AI reply not understood for %s: %r", page_url, content[:200])

@@ -1,6 +1,6 @@
 # Perth Events Monitor
 
-**v0.1.1** · Collects free and low-cost events (concerts, art classes, talks and more) from council
+**v0.1.2** · Collects free and low-cost events (concerts, art classes, talks and more) from council
 and library websites across Perth and Peel, plus Eventbrite organisers you follow. Runs by itself on
 GitHub Actions, publishes a filterable list and map on GitHub Pages, and emails a weekly digest of
 new events.

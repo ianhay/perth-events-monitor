@@ -160,6 +160,7 @@ def test_full_collect_run(tmp_path, monkeypatch):
     class FakePost:
         status_code = 200
         headers = {}
+        text = "{}"
 
         def json(self):
             return {"choices": [{"message": {"content": json.dumps({"events": [
@@ -223,3 +224,32 @@ def test_parse_ai_reply(reply, count):
     from monitor.ai import parse_reply
     out = parse_reply(reply)
     assert (None if out is None else len(out)) == count
+
+
+def test_ai_retries_plain_mode_after_empty_json_reply(monkeypatch, tmp_path):
+    from monitor import ai
+    monkeypatch.setattr(ai, "CACHE_PATH", tmp_path / "c.json")
+    monkeypatch.setattr(ai.time, "sleep", lambda s: None)
+    monkeypatch.setenv("GITHUB_TOKEN", "x")
+    seen = []
+
+    class R:
+        status_code, headers, text = 200, {}, "{}"
+
+        def __init__(self, content):
+            self.content = content
+
+        def json(self):
+            return {"choices": [{"message": {"content": self.content}}]}
+
+    def post(url, json, **kw):
+        seen.append("response_format" in json)
+        return R("" if "response_format" in json else
+                 '{"events": [{"title": "Jazz night", "start": "%s"}]}' % SOON.strftime("%Y-%m-%dT19:00"))
+
+    monkeypatch.setattr(ai.requests, "post", post)
+    x = ai.AIExtractor(SETTINGS)
+    assert [e.title for e in x.extract("page", "", "https://a.wa.gov.au/events")] == ["Jazz night"]
+    assert seen == [True, False]
+    x.extract("other page", "", "https://a.wa.gov.au/events2")
+    assert seen == [True, False, False]  # stays in plain mode for the rest of the run

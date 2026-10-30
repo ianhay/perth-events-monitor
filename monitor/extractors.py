@@ -236,7 +236,11 @@ def page_text(html: str, limit: int) -> str:
         tag.decompose()
     for tag in soup.select('[role=navigation], [class*=cookie], [id*=cookie], [class*=breadcrumb]'):
         tag.decompose()
-    root = soup.find("main") or soup.find(attrs={"role": "main"}) or soup.find("article") or soup.body or soup
+    # Use <main> only when it holds most of the page's text; some sites put just a promoted item there.
+    body = soup.body or soup
+    main = soup.find("main") or soup.find(attrs={"role": "main"})
+    body_text = body.get_text("\n", strip=True)
+    root = main if main is not None and len(main.get_text(strip=True)) > 0.5 * len(body_text) else body
     text = re.sub(r"\n\s*\n+", "\n", root.get_text("\n", strip=True))
     return text[:limit]
 
