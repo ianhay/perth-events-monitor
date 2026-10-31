@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-30T17:08+08:00",
+ "generated": "2026-10-31T09:02+08:00",
  "sources": [
   {
    "source": "City of Armadale",
@@ -9,7 +9,7 @@
    "events": 0,
    "detail": "AI extraction waiting: no API key: add the GEMINI_API_KEY repository secret",
    "previous_events": 0,
-   "zero_runs": 4,
+   "zero_runs": 5,
    "needs_attention": false,
    "last_nonzero": null
   },
@@ -21,7 +21,7 @@
    "events": 0,
    "detail": "AI extraction waiting: no API key: add the GEMINI_API_KEY repository secret",
    "previous_events": 0,
-   "zero_runs": 4,
+   "zero_runs": 5,
    "needs_attention": false,
    "last_nonzero": null
   },
@@ -33,7 +33,7 @@
    "events": 0,
    "detail": "AI extraction waiting: no API key: add the GEMINI_API_KEY repository secret",
    "previous_events": 0,
-   "zero_runs": 4,
+   "zero_runs": 5,
    "needs_attention": false,
    "last_nonzero": null
   },
@@ -45,7 +45,7 @@
    "events": 0,
    "detail": "AI extraction waiting: no API key: add the GEMINI_API_KEY repository secret",
    "previous_events": 0,
-   "zero_runs": 4,
+   "zero_runs": 5,
    "needs_attention": false,
    "last_nonzero": null
   },
@@ -57,7 +57,7 @@
    "events": 0,
    "detail": "AI extraction waiting: no API key: add the GEMINI_API_KEY repository secret",
    "previous_events": 0,
-   "zero_runs": 3,
+   "zero_runs": 4,
    "needs_attention": false,
    "last_nonzero": null
   },
@@ -69,7 +69,7 @@
    "events": 0,
    "detail": "AI extraction waiting: no API key: add the GEMINI_API_KEY repository secret",
    "previous_events": 0,
-   "zero_runs": 4,
+   "zero_runs": 5,
    "needs_attention": false,
    "last_nonzero": null
   },
@@ -81,7 +81,7 @@
    "events": 0,
    "detail": "AI extraction waiting: no API key: add the GEMINI_API_KEY repository secret",
    "previous_events": 0,
-   "zero_runs": 4,
+   "zero_runs": 5,
    "needs_attention": false,
    "last_nonzero": null
   },
@@ -93,7 +93,7 @@
    "events": 0,
    "detail": "AI extraction waiting: no API key: add the GEMINI_API_KEY repository secret",
    "previous_events": 0,
-   "zero_runs": 4,
+   "zero_runs": 5,
    "needs_attention": false,
    "last_nonzero": null
   },
@@ -105,7 +105,7 @@
    "events": 0,
    "detail": "AI extraction waiting: no API key: add the GEMINI_API_KEY repository secret",
    "previous_events": 0,
-   "zero_runs": 4,
+   "zero_runs": 5,
    "needs_attention": false,
    "last_nonzero": null
   },
@@ -117,7 +117,7 @@
    "events": 0,
    "detail": "AI extraction waiting: no API key: add the GEMINI_API_KEY repository secret",
    "previous_events": 0,
-   "zero_runs": 4,
+   "zero_runs": 5,
    "needs_attention": false,
    "last_nonzero": null
   },
@@ -129,7 +129,7 @@
    "events": 0,
    "detail": "AI extraction waiting: no API key: add the GEMINI_API_KEY repository secret",
    "previous_events": 0,
-   "zero_runs": 4,
+   "zero_runs": 5,
    "needs_attention": false,
    "last_nonzero": null
   },
@@ -141,7 +141,7 @@
    "events": 0,
    "detail": "AI extraction waiting: no API key: add the GEMINI_API_KEY repository secret",
    "previous_events": 0,
-   "zero_runs": 4,
+   "zero_runs": 5,
    "needs_attention": false,
    "last_nonzero": null
   },
@@ -153,7 +153,7 @@
    "events": 0,
    "detail": "AI extraction waiting: no API key: add the GEMINI_API_KEY repository secret",
    "previous_events": 0,
-   "zero_runs": 3,
+   "zero_runs": 4,
    "needs_attention": false,
    "last_nonzero": null
   },
@@ -165,7 +165,7 @@
    "events": 0,
    "detail": "AI extraction waiting: no API key: add the GEMINI_API_KEY repository secret",
    "previous_events": 0,
-   "zero_runs": 4,
+   "zero_runs": 5,
    "needs_attention": false,
    "last_nonzero": null
   },
@@ -177,7 +177,7 @@
    "events": 0,
    "detail": "AI extraction waiting: no API key: add the GEMINI_API_KEY repository secret",
    "previous_events": 0,
-   "zero_runs": 4,
+   "zero_runs": 5,
    "needs_attention": false,
    "last_nonzero": null
   },
@@ -189,7 +189,7 @@
    "events": 0,
    "detail": "AI extraction waiting: no API key: add the GEMINI_API_KEY repository secret",
    "previous_events": 0,
-   "zero_runs": 4,
+   "zero_runs": 5,
    "needs_attention": false,
    "last_nonzero": null
   },
@@ -201,7 +201,7 @@
    "events": 0,
    "detail": "AI extraction waiting: no API key: add the GEMINI_API_KEY repository secret",
    "previous_events": 0,
-   "zero_runs": 4,
+   "zero_runs": 5,
    "needs_attention": false,
    "last_nonzero": null
   },
@@ -213,7 +213,7 @@
    "events": 0,
    "detail": "AI extraction waiting: no API key: add the GEMINI_API_KEY repository secret",
    "previous_events": 0,
-   "zero_runs": 4,
+   "zero_runs": 5,
    "needs_attention": false,
    "last_nonzero": null
   },
@@ -225,7 +225,7 @@
    "events": 0,
    "detail": "AI extraction waiting: no API key: add the GEMINI_API_KEY repository secret",
    "previous_events": 0,
-   "zero_runs": 3,
+   "zero_runs": 4,
    "needs_attention": false,
    "last_nonzero": null
   },
@@ -237,7 +237,7 @@
    "events": 0,
    "detail": "AI extraction waiting: no API key: add the GEMINI_API_KEY repository secret",
    "previous_events": 0,
-   "zero_runs": 4,
+   "zero_runs": 5,
    "needs_attention": false,
    "last_nonzero": null
   },
@@ -249,7 +249,7 @@
    "events": 0,
    "detail": "AI extraction waiting: no API key: add the GEMINI_API_KEY repository secret",
    "previous_events": 0,
-   "zero_runs": 4,
+   "zero_runs": 5,
    "needs_attention": false,
    "last_nonzero": null
   },
@@ -261,7 +261,7 @@
    "events": 0,
    "detail": "AI extraction waiting: no API key: add the GEMINI_API_KEY repository secret",
    "previous_events": 0,
-   "zero_runs": 4,
+   "zero_runs": 5,
    "needs_attention": false,
    "last_nonzero": null
   },
@@ -273,7 +273,7 @@
    "events": 0,
    "detail": "AI extraction waiting: no API key: add the GEMINI_API_KEY repository secret",
    "previous_events": 0,
-   "zero_runs": 4,
+   "zero_runs": 5,
    "needs_attention": false,
    "last_nonzero": null
   },
@@ -287,7 +287,7 @@
    "previous_events": 1,
    "zero_runs": 0,
    "needs_attention": false,
-   "last_nonzero": "2026-10-30"
+   "last_nonzero": "2026-10-31"
   },
   {
    "source": "City of Kwinana",
@@ -297,7 +297,7 @@
    "events": 0,
    "detail": "AI extraction waiting: no API key: add the GEMINI_API_KEY repository secret",
    "previous_events": 0,
-   "zero_runs": 4,
+   "zero_runs": 5,
    "needs_attention": false,
    "last_nonzero": null
   },
@@ -309,7 +309,7 @@
    "events": 0,
    "detail": "AI extraction waiting: no API key: add the GEMINI_API_KEY repository secret",
    "previous_events": 0,
-   "zero_runs": 4,
+   "zero_runs": 5,
    "needs_attention": false,
    "last_nonzero": null
   },
@@ -321,7 +321,7 @@
    "events": 0,
    "detail": "AI extraction waiting: no API key: add the GEMINI_API_KEY repository secret",
    "previous_events": 0,
-   "zero_runs": 4,
+   "zero_runs": 5,
    "needs_attention": false,
    "last_nonzero": null
   },
@@ -333,7 +333,7 @@
    "events": 0,
    "detail": "AI extraction waiting: no API key: add the GEMINI_API_KEY repository secret",
    "previous_events": 0,
-   "zero_runs": 4,
+   "zero_runs": 5,
    "needs_attention": false,
    "last_nonzero": null
   },
@@ -347,7 +347,7 @@
    "previous_events": 6,
    "zero_runs": 0,
    "needs_attention": false,
-   "last_nonzero": "2026-10-30"
+   "last_nonzero": "2026-10-31"
   },
   {
    "source": "Town of Mosman Park",
@@ -359,7 +359,7 @@
    "previous_events": 6,
    "zero_runs": 0,
    "needs_attention": false,
-   "last_nonzero": "2026-10-30"
+   "last_nonzero": "2026-10-31"
   },
   {
    "source": "Town of Mosman Park",
@@ -371,7 +371,7 @@
    "previous_events": 6,
    "zero_runs": 0,
    "needs_attention": false,
-   "last_nonzero": "2026-10-30"
+   "last_nonzero": "2026-10-31"
   },
   {
    "source": "Shire of Mundaring",
@@ -381,7 +381,7 @@
    "events": 0,
    "detail": "AI extraction waiting: no API key: add the GEMINI_API_KEY repository secret",
    "previous_events": 0,
-   "zero_runs": 4,
+   "zero_runs": 5,
    "needs_attention": false,
    "last_nonzero": null
   },
@@ -393,7 +393,7 @@
    "events": 0,
    "detail": "AI extraction waiting: no API key: add the GEMINI_API_KEY repository secret",
    "previous_events": 0,
-   "zero_runs": 4,
+   "zero_runs": 5,
    "needs_attention": false,
    "last_nonzero": null
   },
@@ -405,7 +405,7 @@
    "events": 0,
    "detail": "AI extraction waiting: no API key: add the GEMINI_API_KEY repository secret",
    "previous_events": 0,
-   "zero_runs": 4,
+   "zero_runs": 5,
    "needs_attention": false,
    "last_nonzero": null
   },
@@ -417,7 +417,7 @@
    "events": 0,
    "detail": "AI extraction waiting: no API key: add the GEMINI_API_KEY repository secret",
    "previous_events": 0,
-   "zero_runs": 3,
+   "zero_runs": 4,
    "needs_attention": false,
    "last_nonzero": null
   },
@@ -429,7 +429,7 @@
    "events": 0,
    "detail": "AI extraction waiting: no API key: add the GEMINI_API_KEY repository secret",
    "previous_events": 0,
-   "zero_runs": 4,
+   "zero_runs": 5,
    "needs_attention": false,
    "last_nonzero": null
   },
@@ -441,7 +441,7 @@
    "events": 0,
    "detail": "AI extraction waiting: no API key: add the GEMINI_API_KEY repository secret",
    "previous_events": 0,
-   "zero_runs": 4,
+   "zero_runs": 5,
    "needs_attention": false,
    "last_nonzero": null
   },
@@ -453,7 +453,7 @@
    "events": 0,
    "detail": "AI extraction waiting: no API key: add the GEMINI_API_KEY repository secret",
    "previous_events": 0,
-   "zero_runs": 4,
+   "zero_runs": 5,
    "needs_attention": false,
    "last_nonzero": null
   },
@@ -465,7 +465,7 @@
    "events": 0,
    "detail": "AI extraction waiting: no API key: add the GEMINI_API_KEY repository secret",
    "previous_events": 0,
-   "zero_runs": 3,
+   "zero_runs": 4,
    "needs_attention": false,
    "last_nonzero": null
   },
@@ -477,7 +477,7 @@
    "events": 0,
    "detail": "AI extraction waiting: no API key: add the GEMINI_API_KEY repository secret",
    "previous_events": 0,
-   "zero_runs": 3,
+   "zero_runs": 4,
    "needs_attention": false,
    "last_nonzero": null
   },
@@ -489,7 +489,7 @@
    "events": 0,
    "detail": "AI extraction waiting: no API key: add the GEMINI_API_KEY repository secret",
    "previous_events": 0,
-   "zero_runs": 4,
+   "zero_runs": 5,
    "needs_attention": false,
    "last_nonzero": null
   },
@@ -501,7 +501,7 @@
    "events": 0,
    "detail": "AI extraction waiting: no API key: add the GEMINI_API_KEY repository secret",
    "previous_events": 0,
-   "zero_runs": 4,
+   "zero_runs": 5,
    "needs_attention": false,
    "last_nonzero": null
   },
@@ -513,7 +513,7 @@
    "events": 0,
    "detail": "AI extraction waiting: no API key: add the GEMINI_API_KEY repository secret",
    "previous_events": 0,
-   "zero_runs": 4,
+   "zero_runs": 5,
    "needs_attention": false,
    "last_nonzero": null
   },
@@ -525,7 +525,7 @@
    "events": 0,
    "detail": "AI extraction waiting: no API key: add the GEMINI_API_KEY repository secret",
    "previous_events": 0,
-   "zero_runs": 4,
+   "zero_runs": 5,
    "needs_attention": false,
    "last_nonzero": null
   },
@@ -537,7 +537,7 @@
    "events": 0,
    "detail": "AI extraction waiting: no API key: add the GEMINI_API_KEY repository secret",
    "previous_events": 0,
-   "zero_runs": 4,
+   "zero_runs": 5,
    "needs_attention": false,
    "last_nonzero": null
   },
@@ -549,7 +549,7 @@
    "events": 0,
    "detail": "AI extraction waiting: no API key: add the GEMINI_API_KEY repository secret",
    "previous_events": 0,
-   "zero_runs": 3,
+   "zero_runs": 4,
    "needs_attention": false,
    "last_nonzero": null
   },
@@ -561,7 +561,7 @@
    "events": 0,
    "detail": "AI extraction waiting: no API key: add the GEMINI_API_KEY repository secret",
    "previous_events": 0,
-   "zero_runs": 3,
+   "zero_runs": 4,
    "needs_attention": false,
    "last_nonzero": null
   },
@@ -573,7 +573,7 @@
    "events": 0,
    "detail": "AI extraction waiting: no API key: add the GEMINI_API_KEY repository secret",
    "previous_events": 0,
-   "zero_runs": 4,
+   "zero_runs": 5,
    "needs_attention": false,
    "last_nonzero": null
   },
@@ -585,7 +585,7 @@
    "events": 0,
    "detail": "AI extraction waiting: no API key: add the GEMINI_API_KEY repository secret",
    "previous_events": 0,
-   "zero_runs": 4,
+   "zero_runs": 5,
    "needs_attention": false,
    "last_nonzero": null
   },
@@ -597,7 +597,7 @@
    "events": 0,
    "detail": "AI extraction waiting: no API key: add the GEMINI_API_KEY repository secret",
    "previous_events": 0,
-   "zero_runs": 4,
+   "zero_runs": 5,
    "needs_attention": false,
    "last_nonzero": null
   },
@@ -609,7 +609,7 @@
    "events": 0,
    "detail": "AI extraction waiting: no API key: add the GEMINI_API_KEY repository secret",
    "previous_events": 0,
-   "zero_runs": 3,
+   "zero_runs": 4,
    "needs_attention": false,
    "last_nonzero": null
   },
@@ -621,7 +621,7 @@
    "events": 0,
    "detail": "AI extraction waiting: no API key: add the GEMINI_API_KEY repository secret",
    "previous_events": 0,
-   "zero_runs": 4,
+   "zero_runs": 5,
    "needs_attention": false,
    "last_nonzero": null
   },
@@ -633,7 +633,7 @@
    "events": 0,
    "detail": "AI extraction waiting: no API key: add the GEMINI_API_KEY repository secret",
    "previous_events": 0,
-   "zero_runs": 4,
+   "zero_runs": 5,
    "needs_attention": false,
    "last_nonzero": null
   },
@@ -645,7 +645,7 @@
    "events": 0,
    "detail": "AI extraction waiting: no API key: add the GEMINI_API_KEY repository secret",
    "previous_events": 0,
-   "zero_runs": 4,
+   "zero_runs": 5,
    "needs_attention": false,
    "last_nonzero": null
   },
@@ -657,7 +657,7 @@
    "events": 0,
    "detail": "AI extraction waiting: no API key: add the GEMINI_API_KEY repository secret",
    "previous_events": 0,
-   "zero_runs": 4,
+   "zero_runs": 5,
    "needs_attention": false,
    "last_nonzero": null
   },
@@ -669,7 +669,7 @@
    "events": 0,
    "detail": "AI extraction waiting: no API key: add the GEMINI_API_KEY repository secret",
    "previous_events": 0,
-   "zero_runs": 4,
+   "zero_runs": 5,
    "needs_attention": false,
    "last_nonzero": null
   },
@@ -680,7 +680,7 @@
    "status": "skipped",
    "detail": "EVENTBRITE_TOKEN secret not set",
    "previous_events": 0,
-   "zero_runs": 4,
+   "zero_runs": 5,
    "needs_attention": false,
    "last_nonzero": null
   }
