@@ -1,6 +1,6 @@
 {
- "generated": "2026-10-30T16:04+08:00",
- "version": "0.1.1",
+ "generated": "2026-11-02T07:50+08:00",
+ "version": "0.2.0",
  "councils": [
   {
    "name": "City of Armadale",
@@ -31,11 +31,11 @@
     {
      "url": "https://www.bassendean.wa.gov.au/events/",
      "method": "html",
-     "score": 21.3,
+     "score": 20.7,
      "signals": {
       "jsonld": 0,
-      "detail_links": 9,
-      "dates": 13
+      "detail_links": 8,
+      "dates": 12
      }
     }
    ],
@@ -87,20 +87,20 @@
     {
      "url": "https://www.cambridge.wa.gov.au/Discover/Whats-On",
      "method": "html",
-     "score": 16.0,
+     "score": 15.7,
      "signals": {
       "jsonld": 0,
-      "detail_links": 11,
+      "detail_links": 10,
       "dates": 10
      }
     },
     {
      "url": "https://www.cambridge.wa.gov.au/Community/People-in-Our-Community/Young-People/Whats-On",
      "method": "html",
-     "score": 13.7,
+     "score": 13.3,
      "signals": {
       "jsonld": 0,
-      "detail_links": 10,
+      "detail_links": 9,
       "dates": 10
      }
     }
@@ -192,31 +192,31 @@
     {
      "url": "https://www.cockburn.wa.gov.au/Adventure-and-Leisure/What-s-On-cockburn/Choose-your-own-adventure",
      "method": "html",
-     "score": 6.0,
+     "score": 5.7,
      "signals": {
       "jsonld": 0,
       "detail_links": 6,
-      "dates": 3
+      "dates": 2
      }
     },
     {
      "url": "https://www.cockburn.wa.gov.au/Adventure-and-Leisure/What-s-On-cockburn/Spend-time-not-money",
      "method": "html",
-     "score": 5.7,
+     "score": 5.3,
      "signals": {
       "jsonld": 0,
       "detail_links": 5,
-      "dates": 3
+      "dates": 2
      }
     },
     {
      "url": "https://www.cockburn.wa.gov.au/Business-Events-and-Workshops",
      "method": "html",
-     "score": 5.0,
+     "score": 4.7,
      "signals": {
       "jsonld": 0,
       "detail_links": 0,
-      "dates": 9
+      "dates": 8
      }
     }
    ],
@@ -271,20 +271,11 @@
    "name": "City of Fremantle",
    "region": "metro",
    "homepage": "https://www.fremantle.wa.gov.au",
-   "sources": [
-    {
-     "url": "https://www.fremantle.wa.gov.au/arts-and-culture/whats-on/",
-     "method": "html",
-     "score": 11.3,
-     "signals": {
-      "jsonld": 0,
-      "detail_links": 5,
-      "dates": 2
-     }
-    }
+   "sources": [],
+   "status": "no_events_page",
+   "notes": [
+    "No events page found; add one under pin: in councils.yaml"
    ],
-   "status": "ok",
-   "notes": [],
    "eventbrite": [],
    "final_url": "https://www.fremantle.wa.gov.au/"
   },
@@ -314,13 +305,13 @@
      }
     },
     {
-     "url": "https://www.gosnells.wa.gov.au/Events-Directory/Libraries/JPs/Justice-of-the-Peace-Gosnells-Library",
+     "url": "https://www.gosnells.wa.gov.au/Events-Directory/Libraries/Charity-Chums",
      "method": "html",
-     "score": 15.7,
+     "score": 16.0,
      "signals": {
       "jsonld": 0,
       "detail_links": 11,
-      "dates": 162
+      "dates": 25
      }
     }
    ],
@@ -468,43 +459,11 @@
    "name": "Town of Mosman Park",
    "region": "metro",
    "homepage": "https://www.mosmanpark.wa.gov.au",
-   "sources": [
-    {
-     "url": "https://www.mosmanpark.wa.gov.au/events/",
-     "method": "ical",
-     "score": 25.0,
-     "signals": {
-      "jsonld": 6,
-      "detail_links": 12,
-      "dates": 3
-     },
-     "ical_url": "https://www.mosmanpark.wa.gov.au/events/?ical=1"
-    },
-    {
-     "url": "https://www.mosmanpark.wa.gov.au/event/remembrance-day-2026/",
-     "method": "ical",
-     "score": 11.3,
-     "signals": {
-      "jsonld": 1,
-      "detail_links": 3,
-      "dates": 4
-     },
-     "ical_url": "https://www.mosmanpark.wa.gov.au/events/?ical=1"
-    },
-    {
-     "url": "https://www.mosmanpark.wa.gov.au/event/impact-cafe-from-issue-to-impact/",
-     "method": "ical",
-     "score": 11.0,
-     "signals": {
-      "jsonld": 1,
-      "detail_links": 3,
-      "dates": 3
-     },
-     "ical_url": "https://www.mosmanpark.wa.gov.au/events/?ical=1"
-    }
+   "sources": [],
+   "status": "no_events_page",
+   "notes": [
+    "No events page found; add one under pin: in councils.yaml"
    ],
-   "status": "ok",
-   "notes": [],
    "eventbrite": [],
    "final_url": "https://www.mosmanpark.wa.gov.au/"
   },
@@ -516,10 +475,10 @@
     {
      "url": "https://www.mundaring.wa.gov.au/events/",
      "method": "html",
-     "score": 10.7,
+     "score": 24.7,
      "signals": {
       "jsonld": 0,
-      "detail_links": 6,
+      "detail_links": 57,
       "dates": 2
      }
     }
@@ -643,10 +602,10 @@
     {
      "url": "https://southperth.wa.gov.au/discover/whats-on/events",
      "method": "html",
-     "score": 20.0,
+     "score": 19.7,
      "signals": {
       "jsonld": 0,
-      "detail_links": 16,
+      "detail_links": 15,
       "dates": 11
      }
     },
@@ -708,7 +667,7 @@
      "signals": {
       "jsonld": 0,
       "detail_links": 0,
-      "dates": 30
+      "dates": 32
      }
     }
    ],
@@ -762,17 +721,17 @@
      "signals": {
       "jsonld": 0,
       "detail_links": 37,
-      "dates": 64
+      "dates": 60
      }
     },
     {
      "url": "https://www.victoriapark.wa.gov.au/community/events",
      "method": "html",
-     "score": 20.0,
+     "score": 18.7,
      "signals": {
       "jsonld": 0,
-      "detail_links": 12,
-      "dates": 6
+      "detail_links": 11,
+      "dates": 3
      }
     },
     {
@@ -797,13 +756,13 @@
    "homepage": "https://www.vincent.wa.gov.au",
    "sources": [
     {
-     "url": "https://www.vincent.wa.gov.au/events/?c=4",
+     "url": "https://www.vincent.wa.gov.au/events/",
      "method": "html",
      "score": 30.3,
      "signals": {
       "jsonld": 0,
-      "detail_links": 25,
-      "dates": 36
+      "detail_links": 19,
+      "dates": 39
      }
     }
    ],
@@ -820,11 +779,11 @@
     {
      "url": "https://www.wanneroo.wa.gov.au/events",
      "method": "html",
-     "score": 14.3,
+     "score": 11.0,
      "signals": {
       "jsonld": 0,
-      "detail_links": 18,
-      "dates": 1
+      "detail_links": 9,
+      "dates": 0
      }
     },
     {
