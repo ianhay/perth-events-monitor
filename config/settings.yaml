@@ -71,4 +71,4 @@ kids_keywords: [rhyme time, rhymetime, storytime, story time, baby, babies, todd
 digest:
   subject: "New Perth events this week"
   max_items_per_category: 25
-  site_url: ""   # set to your GitHub Pages URL so the email links to the site
+  site_url: "https://ianhay.github.io/perth-events-monitor/"
